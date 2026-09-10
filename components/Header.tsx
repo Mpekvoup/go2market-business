@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Language } from '../types';
-import { NAV_LINKS } from '../constants';
+import { useSite } from '../src/config/SiteContext';
 
 interface HeaderProps {
   lang: Language;
@@ -10,13 +10,33 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
+  const { siteType } = useSite();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
-  const isServicePage = location.pathname === '/business-consultation' || location.pathname === '/company-registration';
+
+  // Site-specific navigation
+  const navLinks = siteType === 'consulting'
+    ? [
+        { id: 'consulting-areas', label: { en: 'Consulting', ru: 'Консалтинг' } },
+        { id: 'process', label: { en: 'How It Works', ru: 'Как это работает' } },
+        { id: 'faq', label: { en: 'FAQ', ru: 'FAQ' } },
+        { id: 'contacts', label: { en: 'Contact', ru: 'Контакты' } }
+      ]
+    : [
+        { id: 'registration', label: { en: 'Registration', ru: 'Регистрация' } },
+        { id: 'process', label: { en: 'Process', ru: 'Процесс' } },
+        { id: 'faq', label: { en: 'FAQ', ru: 'FAQ' } },
+        { id: 'contacts', label: { en: 'Contact', ru: 'Контакты' } }
+      ];
+
+  // Site-specific CTA
+  const ctaText = siteType === 'consulting'
+    ? { en: 'Book Consultation', ru: 'Консультация' }
+    : { en: 'Start Registration', ru: 'Начать регистрацию' };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -124,20 +144,8 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
 
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center space-x-8">
-              {NAV_LINKS.map((link) => (
-                link.href ? (
-                  <Link
-                    key={link.id}
-                    to={link.href}
-                    className={`text-sm font-semibold transition-colors uppercase ${
-                      location.pathname === link.href
-                        ? 'text-qatar-maroon'
-                        : 'text-white hover:text-qatar-maroon'
-                    }`}
-                  >
-                    {link.label[lang]}
-                  </Link>
-                ) : (isHomePage || isServicePage) ? (
+              {navLinks.map((link) => (
+                isHomePage ? (
                   <a
                     key={link.id}
                     href={`#${link.id}`}
@@ -174,20 +182,20 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
               </div>
 
               {/* CTA Button */}
-              {(isHomePage || isServicePage) ? (
+              {isHomePage ? (
                 <a
                   href="#contacts"
                   onClick={(e) => scrollToSection(e, 'contacts')}
                   className="bg-qatar-maroon hover:bg-[#6B1F3D] text-white px-6 py-2.5 rounded-md font-semibold transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
                 >
-                  {lang === 'en' ? 'Book Consultation' : 'Консультация'}
+                  {ctaText[lang]}
                 </a>
               ) : (
                 <Link
                   to="/#contacts"
                   className="bg-qatar-maroon hover:bg-[#6B1F3D] text-white px-6 py-2.5 rounded-md font-semibold transition-all shadow-lg hover:shadow-xl whitespace-nowrap"
                 >
-                  {lang === 'en' ? 'Book Consultation' : 'Консультация'}
+                  {ctaText[lang]}
                 </Link>
               )}
             </nav>
@@ -230,23 +238,8 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
 
           {/* Links */}
           <nav className="flex flex-col px-8 py-8 gap-1 flex-grow">
-            {NAV_LINKS.map((link, idx) => (
-              link.href ? (
-                <Link
-                  key={link.id}
-                  to={link.href}
-                  onClick={() => setIsMobileMenuOpen(false)}
-                  className={`flex items-center justify-between py-4 border-b border-white/5 group ${location.pathname === link.href ? 'text-qatar-maroon' : 'text-white'}`}
-                >
-                  <div className="flex items-center gap-4">
-                    <span className="text-xs font-black text-white/20 w-5">{String(idx + 1).padStart(2, '0')}</span>
-                    <span className="text-lg font-extrabold tracking-tight">{link.label[lang]}</span>
-                  </div>
-                  <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-qatar-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              ) : (isHomePage || isServicePage) ? (
+            {navLinks.map((link, idx) => (
+              isHomePage ? (
                 <a
                   key={link.id}
                   href={`#${link.id}`}

@@ -1,5 +1,6 @@
 import React, { useState, useRef } from 'react';
 import { Language } from '../types';
+import { useSite } from '../src/config/SiteContext';
 
 interface ContactFormProps {
   lang: Language;
@@ -28,6 +29,7 @@ function getDailyCount(): number {
 }
 
 const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
+  const { siteType, siteConfig } = useSite();
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error' | 'limited'>('idle');
   const [cooldown, setCooldown] = useState(0); // Initialize with 0 to avoid SSR mismatch
   const [currentStep, setCurrentStep] = useState(0);
@@ -38,6 +40,10 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
     message: ''
   });
   const cooldownIntervalRef = useRef<NodeJS.Timeout | null>(null);
+
+  // Site-specific service and source
+  const service = siteType === 'consulting' ? 'Business Consultation' : 'Company Registration';
+  const source = siteConfig.domain;
 
   // Функция отправки в Telegram
   const sendToTelegram = async (data: typeof formData) => {
@@ -56,6 +62,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
     const message = `
 🆕 <b>Новая заявка с сайта!</b>
 
+📋 <b>Услуга:</b> ${service}
 👤 <b>Имя:</b> ${data.name}
 📱 <b>Контакт:</b> ${data.contact}
 🌍 <b>Регион:</b> ${regionLabels[data.region as keyof typeof regionLabels]?.en || data.region}
@@ -63,7 +70,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
 ${data.message}
 
 ⏰ <i>${new Date().toLocaleString('ru-RU', { timeZone: 'Asia/Qatar' })}</i>
-🌐 <i>go2market.qa</i>
+🌐 <i>${source}</i>
     `.trim();
 
     const response = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {

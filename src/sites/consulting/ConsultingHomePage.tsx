@@ -1,0 +1,245 @@
+import React, { lazy, Suspense } from 'react';
+import { Language } from '@/types';
+import { consultingContent } from './data/consultingContent';
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
+// Shared components
+const ContactForm = lazy(() => import('@/components/ContactForm'));
+const Partners = lazy(() => import('@/components/Partners'));
+
+interface ConsultingHomePageProps {
+  lang: Language;
+  setLang: (lang: Language) => void;
+}
+
+const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }) => {
+  const content = consultingContent;
+
+  return (
+    <div className="flex flex-col min-h-screen">
+      <Header lang={lang} setLang={setLang} />
+
+      <main className="flex-grow">
+        {/* Hero Section */}
+        <section className="relative pt-28 pb-20 md:pt-44 md:pb-32 bg-gradient-to-br from-slate-50 to-white overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full opacity-[0.03]">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-qatar-maroon rounded-full blur-3xl"></div>
+          </div>
+
+          <div className="container mx-auto px-6 relative z-10">
+            <div className="max-w-4xl">
+              <div className="inline-block mb-6 px-4 py-2 bg-qatar-maroon/10 text-qatar-maroon rounded-full">
+                <span className="text-xs font-black uppercase tracking-[0.3em]">
+                  {content.hero.badge[lang]}
+                </span>
+              </div>
+
+              <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-8">
+                {content.hero.headline[lang]}
+              </h1>
+
+              <p className="text-xl md:text-2xl text-slate-600 font-medium leading-relaxed mb-12">
+                {content.hero.subheadline[lang]}
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="#contacts"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-qatar-maroon hover:bg-qatar-maroon/90 text-white rounded-2xl font-bold text-lg shadow-lg transition-all hover:scale-105 active:scale-95"
+                >
+                  {content.hero.primaryCTA[lang]}
+                  <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+                <a
+                  href="#consulting-areas"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-200 hover:border-qatar-maroon rounded-2xl font-bold text-lg transition-all"
+                >
+                  {content.hero.secondaryCTA[lang]}
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Consulting Areas */}
+        <section id="consulting-areas" className="py-24 md:py-32 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+                {content.consultingAreas.title[lang]}
+              </h2>
+              <p className="text-xl text-slate-600">
+                {content.consultingAreas.subtitle[lang]}
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {content.consultingAreas.areas.map((area, index) => (
+                <div
+                  key={index}
+                  className="p-8 bg-slate-50 hover:bg-white border border-slate-100 hover:border-qatar-maroon/20 rounded-2xl transition-all hover:shadow-lg group"
+                >
+                  <div className="w-14 h-14 bg-qatar-maroon/10 text-qatar-maroon rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                    <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      {area.icon === 'target' && <><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></>}
+                      {area.icon === 'trending-up' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />}
+                      {area.icon === 'rocket' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />}
+                      {area.icon === 'users' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />}
+                      {area.icon === 'settings' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />}
+                      {area.icon === 'compass' && <><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></>}
+                    </svg>
+                  </div>
+                  <h3 className="text-xl font-bold text-slate-900 mb-3">
+                    {area.title[lang]}
+                  </h3>
+                  <p className="text-slate-600 leading-relaxed">
+                    {area.description[lang]}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Who We Help */}
+        <section className="py-24 md:py-32 bg-slate-50">
+          <div className="container mx-auto px-6">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+                {content.whoWeHelp.title[lang]}
+              </h2>
+              <p className="text-xl text-slate-600">
+                {content.whoWeHelp.subtitle[lang]}
+              </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {content.whoWeHelp.audience.map((item, index) => (
+                <div
+                  key={index}
+                  className="p-6 bg-white rounded-xl border border-slate-100 hover:border-qatar-maroon/30 hover:shadow-md transition-all"
+                >
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">
+                    {item.title[lang]}
+                  </h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">
+                    {item.description[lang]}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Process */}
+        <section id="process" className="py-24 md:py-32 bg-white">
+          <div className="container mx-auto px-6">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+                {content.process.title[lang]}
+              </h2>
+              <p className="text-xl text-slate-600">
+                {content.process.subtitle[lang]}
+              </p>
+            </div>
+
+            <div className="max-w-4xl mx-auto space-y-6">
+              {content.process.steps.map((step, index) => (
+                <div
+                  key={index}
+                  className="flex gap-6 p-6 bg-slate-50 rounded-xl hover:bg-white hover:shadow-md transition-all border border-slate-100"
+                >
+                  <div className="flex-shrink-0">
+                    <div className="w-12 h-12 bg-qatar-maroon text-white rounded-xl flex items-center justify-center font-bold text-lg">
+                      {step.number}
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-bold text-slate-900 mb-2">
+                      {step.title[lang]}
+                    </h3>
+                    <p className="text-slate-600 leading-relaxed">
+                      {step.description[lang]}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Why G2M */}
+        <section className="py-24 md:py-32 bg-slate-50">
+          <div className="container mx-auto px-6">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+                {content.whyG2M.title[lang]}
+              </h2>
+            </div>
+
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              {content.whyG2M.reasons.map((reason, index) => (
+                <div key={index} className="p-6 bg-white rounded-xl border border-slate-100">
+                  <h3 className="text-lg font-bold text-slate-900 mb-2">
+                    {reason.title[lang]}
+                  </h3>
+                  <p className="text-slate-600 text-sm leading-relaxed">
+                    {reason.description[lang]}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section id="faq" className="py-24 md:py-32 bg-white">
+            <div className="container mx-auto px-6">
+              <div className="max-w-3xl mx-auto text-center mb-16">
+                <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+                  {content.faq.title[lang]}
+                </h2>
+              </div>
+
+              <div className="max-w-3xl mx-auto space-y-4">
+                {content.faq.items.map((item, index) => (
+                  <details
+                    key={index}
+                    className="group p-6 bg-slate-50 rounded-xl border border-slate-100 hover:border-qatar-maroon/30 transition-all"
+                  >
+                    <summary className="font-bold text-slate-900 cursor-pointer list-none flex items-center justify-between">
+                      {item.question[lang]}
+                      <svg
+                        className="w-5 h-5 text-qatar-maroon group-open:rotate-180 transition-transform"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                      </svg>
+                    </summary>
+                    <p className="mt-4 text-slate-600 leading-relaxed">
+                      {item.answer[lang]}
+                    </p>
+                  </details>
+                ))}
+              </div>
+            </div>
+          </section>
+
+        {/* Shared sections */}
+        <Suspense fallback={<div className="min-h-screen" />}>
+          <ContactForm lang={lang} />
+          <Partners lang={lang} />
+        </Suspense>
+      </main>
+
+      <Footer lang={lang} />
+    </div>
+  );
+};
+
+export default ConsultingHomePage;
