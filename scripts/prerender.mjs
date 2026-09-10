@@ -86,7 +86,8 @@ function generateMetaTags(siteConfig, lang = 'en', pathname = '/') {
 async function prerender() {
   const serverEntryPath = pathToFileURL(path.join(distServer, 'entry-server.js')).href;
   const { render } = await import(serverEntryPath);
-  const baseTemplate = await fs.readFile(path.join(root, 'index.html'), 'utf-8');
+  // CRITICAL: Read from dist/index.html (Vite-built with CSS/JS links), not source template
+  const baseTemplate = await fs.readFile(path.join(distClient, 'index.html'), 'utf-8');
 
   // Generate consulting template
   console.log('\n🔵 Generating consulting site...');
