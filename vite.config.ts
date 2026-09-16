@@ -7,6 +7,9 @@ export default defineConfig(({ command, mode, isSsrBuild }) => ({
   server: {
     port: 3000,
     host: '0.0.0.0',
+    proxy: {
+      '/api': 'http://127.0.0.1:3002',
+    },
   },
   preview: {
     host: '0.0.0.0',

@@ -1,13 +1,28 @@
 import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
+import { createContactHandler } from './contact.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const distPath = path.resolve(__dirname, '../dist');
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3002;
+
+// Handle API requests before static assets and the site-specific SPA fallback.
+const contact = createContactHandler({
+  token: process.env.TELEGRAM_BOT_TOKEN,
+  chatId: process.env.TELEGRAM_CHAT_ID,
+});
+app.all('/api/contact', (req, res, next) => {
+  contact(req, res).catch(next);
+});
+app.use('/api', (req, res) => res.status(404).json({ error: 'Not found' }));
+app.use('/api', (err, req, res, next) => {
+  if (res.headersSent) return next(err);
+  res.status(500).json({ error: 'Contact service unavailable' });
+});
 
 // Log all requests for debugging
 app.use((req, res, next) => {

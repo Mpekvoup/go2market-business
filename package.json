@@ -8,7 +8,9 @@
     "build": "vite build && vite build --ssr src/entry-server.tsx --outDir dist-server && node scripts/prerender.mjs",
     "build:client": "vite build",
     "preview": "vite preview",
-    "start": "node server/index.js"
+    "start": "node server/index.js",
+    "dev:api": "node --env-file-if-exists=.env.local server/index.js",
+    "test:contact": "node --test server/contact.test.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
