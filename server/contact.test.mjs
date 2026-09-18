@@ -63,3 +63,11 @@ test('rate limits requests without trusting forwarded headers', async t => {
   assert.equal((await f.request(valid, { headers: { 'Content-Type': 'application/json', 'X-Forwarded-For': 'different' } })).status, 429);
   assert.equal(f.sent.length, 10);
 });
+
+test('accepts formatted and pasted phones without accepting arbitrary text', async t => {
+  const f = await fixture(t);
+  for (const contact of ['+7 (777) 123-45-67', '+7 (777) 123–45–67', '\u200e+974 1234 5678\u200f', '+٩٧٤ ١٢٣٤ ٥٦٧٨', ' name@example.com ']) {
+    assert.equal((await f.request({ ...valid, contact })).status, 200, contact);
+  }
+  for (const contact of ['abc', '123', '@username']) assert.equal((await f.request({ ...valid, contact })).status, 400);
+});

@@ -1,3 +1,5 @@
+import { isValidContact, normalizeContact } from '../src/contact-validation.mjs';
+
 export function createContactHandler({ token, chatId, fetchImpl = fetch, now = Date.now }) {
   const attempts = new Map();
   return async (req, res) => {
@@ -49,10 +51,8 @@ export function createContactHandler({ token, chatId, fetchImpl = fetch, now = D
       }
       fields[key] = data[key].trim();
     }
-    const email = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const phone = /^\+?[\d\s().-]+$/;
-    const digits = fields.contact.replace(/\D/g, '');
-    if (!email.test(fields.contact) && !(phone.test(fields.contact) && digits.length >= 7 && digits.length <= 15)) {
+    fields.contact = normalizeContact(fields.contact);
+    if (!isValidContact(fields.contact)) {
       return reply(400, { error: 'Enter a valid phone number or email' });
     }
     const sites = {

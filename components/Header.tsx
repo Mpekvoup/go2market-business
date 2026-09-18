@@ -17,6 +17,7 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  const isServicePage = location.pathname.startsWith('/services/');
 
   // Site-specific navigation
   const navLinks = siteType === 'consulting'

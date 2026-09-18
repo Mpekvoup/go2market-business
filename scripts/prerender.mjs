@@ -85,7 +85,12 @@ function generateMetaTags(siteConfig, lang = 'en', pathname = '/') {
 
 async function prerender() {
   const serverEntryPath = pathToFileURL(path.join(distServer, 'entry-server.js')).href;
-  const { render } = await import(serverEntryPath);
+  const { render: renderPage } = await import(serverEntryPath);
+  const render = async (...args) => {
+    const html = await renderPage(...args);
+    if (html.includes('<!--$!-->') || !html.includes('<h1')) throw new Error('Incomplete pre-rendered page');
+    return html;
+  };
   // CRITICAL: Read from dist/index.html (Vite-built with CSS/JS links), not source template
   const baseTemplate = await fs.readFile(path.join(distClient, 'index.html'), 'utf-8');
 
@@ -96,7 +101,7 @@ async function prerender() {
   const consultingTemplate = baseTemplate.replace('<!-- SITE_META -->', consultingMeta);
 
   // Pre-render consulting homepage
-  const consultingAppHtml = render('/', 'consulting');
+  const consultingAppHtml = await render('/', 'consulting');
   const consultingHtml = consultingTemplate.replace(
     '<div id="root"></div>',
     `<div id="root">${consultingAppHtml}</div>`
@@ -116,7 +121,7 @@ async function prerender() {
   const registrationTemplate = baseTemplate.replace('<!-- SITE_META -->', registrationMeta);
 
   // Pre-render registration homepage
-  const registrationAppHtml = render('/', 'registration');
+  const registrationAppHtml = await render('/', 'registration');
   const registrationHtml = registrationTemplate.replace(
     '<div id="root"></div>',
     `<div id="root">${registrationAppHtml}</div>`
@@ -137,7 +142,7 @@ async function prerender() {
       const sharedMeta = generateMetaTags(consultingConfig, 'en', route);
       const sharedTemplate = baseTemplate.replace('<!-- SITE_META -->', sharedMeta);
 
-      const appHtml = render(route, 'consulting');
+      const appHtml = await render(route, 'consulting');
       const html = sharedTemplate.replace(
         '<div id="root"></div>',
         `<div id="root">${appHtml}</div>`
@@ -148,6 +153,7 @@ async function prerender() {
       await fs.writeFile(filePath, html, 'utf-8');
       console.log(`✓  ${route}`);
     } catch (err) {
+      process.exitCode = 1;
       console.error(`✗  ${route}:`, err.message);
     }
   }

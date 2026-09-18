@@ -10,9 +10,10 @@ Set `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` in this project's Railway servic
 Variables, then deploy. Never prefix these with `VITE_` or commit actual values.
 Railway's supplied `PORT` is respected. Local API defaults to port 3002.
 
-For development with Node 22+, put the variables in ignored `.env.local`, run
-`npm run dev:api`, and run `npm run dev` in another terminal. Vite proxies `/api`
-to port 3002. Use `?site=registration` to select the registration site locally.
+For development, put the variables in ignored `.env.local` and run `npm run dev`.
+Vite handles `/api/contact` in the same process; no standalone API is required.
+Preview also includes the API. Railway variables are not available locally.
+Restart Vite after changing credentials. Use `?site=registration` locally.
 
 `npm run test:contact` runs HTTP tests with mocked Telegram delivery, without
 sending messages. `npm run build` creates both site variants. After deployment,
