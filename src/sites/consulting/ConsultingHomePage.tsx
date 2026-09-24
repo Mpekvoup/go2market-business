@@ -22,31 +22,54 @@ const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }
 
       <main className="flex-grow">
         {/* Hero Section */}
-        <section className="relative pt-28 pb-20 md:pt-44 md:pb-32 bg-gradient-to-br from-slate-50 to-white overflow-hidden">
-          <div className="absolute top-0 left-0 w-full h-full opacity-[0.03]">
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-qatar-maroon rounded-full blur-3xl"></div>
-          </div>
+        <section className="relative min-h-[520px] md:min-h-[560px] lg:min-h-[600px] flex items-center overflow-hidden pt-20 md:pt-24 lg:pt-28">
+          {/* Background image */}
+          <picture className="absolute inset-0 w-full h-full">
+            <img
+              src="/images/hero/hero-main.jpeg"
+              alt=""
+              className="w-full h-full object-cover object-[75%_center] md:object-[70%_center] lg:object-center"
+              width="1920"
+              height="1080"
+              fetchPriority="high"
+              decoding="async"
+            />
+          </picture>
 
-          <div className="container mx-auto px-6 relative z-10">
-            <div className="max-w-4xl">
-              <div className="inline-block mb-6 px-4 py-2 bg-qatar-maroon/10 text-qatar-maroon rounded-full">
-                <span className="text-xs font-black uppercase tracking-[0.3em]">
+          {/* Dark overlay - base layer */}
+          <div className="absolute inset-0 bg-slate-900/40" aria-hidden="true" />
+
+          {/* Gradient overlay - stronger on left */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/60 to-slate-900/20 md:from-slate-900/85 md:via-slate-900/50 md:to-slate-900/15" aria-hidden="true" />
+
+          {/* Additional top gradient for mobile text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/40 via-transparent to-transparent md:hidden" aria-hidden="true" />
+
+          {/* Content container */}
+          <div className="container mx-auto px-6 relative z-10 py-16 md:py-20 lg:py-24">
+            <div className="max-w-[640px] lg:max-w-[720px]">
+              {/* Badge */}
+              <div className="inline-block mb-5 md:mb-6">
+                <span className="inline-flex items-center px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm border border-white/30 text-white text-sm font-semibold tracking-wide shadow-sm">
                   {content.hero.badge[lang]}
                 </span>
               </div>
 
-              <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-8">
+              {/* H1 */}
+              <h1 className="text-3xl sm:text-4xl md:text-[2.75rem] lg:text-5xl xl:text-6xl font-extrabold text-white leading-[1.1] tracking-tight mb-5 md:mb-6">
                 {content.hero.headline[lang]}
               </h1>
 
-              <p className="text-xl md:text-2xl text-slate-600 font-medium leading-relaxed mb-12">
+              {/* Description */}
+              <p className="text-[15px] sm:text-lg md:text-xl text-white/90 leading-[1.55] sm:leading-normal mb-14 md:mb-12 max-w-[540px]">
                 {content.hero.subheadline[lang]}
               </p>
 
+              {/* CTA buttons */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="#contacts"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-qatar-maroon hover:bg-qatar-maroon/90 text-white rounded-2xl font-bold text-lg shadow-lg transition-all hover:scale-105 active:scale-95"
+                  className="inline-flex items-center justify-center px-7 py-4 bg-qatar-maroon hover:bg-qatar-maroon-dark text-white font-bold text-base rounded-xl shadow-lg shadow-qatar-maroon/30 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 min-h-[48px]"
                 >
                   {content.hero.primaryCTA[lang]}
                   <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -55,7 +78,7 @@ const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }
                 </a>
                 <a
                   href="#consulting-areas"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-white hover:bg-slate-50 text-slate-900 border-2 border-slate-200 hover:border-qatar-maroon rounded-2xl font-bold text-lg transition-all"
+                  className="inline-flex items-center justify-center px-7 py-4 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/30 text-white font-bold text-base rounded-xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-slate-900 min-h-[48px]"
                 >
                   {content.hero.secondaryCTA[lang]}
                 </a>

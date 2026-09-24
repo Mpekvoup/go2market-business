@@ -5,8 +5,8 @@ export const consultingContent = {
       ru: 'Бизнес-консультация'
     },
     headline: {
-      en: 'Navigate Business in Qatar with Expert Guidance',
-      ru: 'Развивайте бизнес в Катаре с экспертной поддержкой'
+      en: 'Grow Your Business in Qatar',
+      ru: 'Развивайте бизнес в Катаре'
     },
     subheadline: {
       en: 'G2M provides practical business consulting, market-entry guidance, strategic support, and local market insight for companies and entrepreneurs operating in Qatar and GCC.',
