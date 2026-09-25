@@ -201,16 +201,50 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
               )}
             </nav>
 
-            {/* Mobile Menu Toggle */}
-            <button
-              className={`lg:hidden relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
-              onClick={() => setIsMobileMenuOpen(true)}
-              aria-label="Open menu"
-            >
-              <span className="block h-0.5 w-6 bg-white rounded-full" />
-              <span className="block h-0.5 w-4 bg-white rounded-full" />
-              <span className="block h-0.5 w-6 bg-white rounded-full" />
-            </button>
+            {/* Mobile Controls: Language Switcher + Menu Toggle */}
+            <div className="lg:hidden flex items-center gap-2">
+              {/* Mobile Language Switcher */}
+              <div className="flex items-center bg-white/10 p-0.5 rounded-md">
+                <button
+                  type="button"
+                  onClick={() => setLang('en')}
+                  aria-label="Switch language to English"
+                  aria-pressed={lang === 'en'}
+                  className={`px-2 py-1.5 rounded text-xs font-bold transition-colors min-w-[40px] min-h-[40px] flex items-center justify-center ${
+                    lang === 'en'
+                      ? 'bg-qatar-maroon text-white'
+                      : 'text-white/60 hover:text-white active:bg-white/10'
+                  }`}
+                >
+                  EN
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLang('ru')}
+                  aria-label="Переключить язык на русский"
+                  aria-pressed={lang === 'ru'}
+                  className={`px-2 py-1.5 rounded text-xs font-bold transition-colors min-w-[40px] min-h-[40px] flex items-center justify-center ${
+                    lang === 'ru'
+                      ? 'bg-qatar-maroon text-white'
+                      : 'text-white/60 hover:text-white active:bg-white/10'
+                  }`}
+                >
+                  RU
+                </button>
+              </div>
+
+              {/* Burger Button */}
+              <button
+                type="button"
+                className={`relative w-10 h-10 flex flex-col items-center justify-center gap-1.5 transition-opacity duration-300 ${isMobileMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}
+                onClick={() => setIsMobileMenuOpen(true)}
+                aria-label="Open menu"
+              >
+                <span className="block h-0.5 w-6 bg-white rounded-full" />
+                <span className="block h-0.5 w-4 bg-white rounded-full" />
+                <span className="block h-0.5 w-6 bg-white rounded-full" />
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -275,11 +309,7 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
           </nav>
 
           {/* Bottom */}
-          <div className="px-8 pb-10 space-y-4">
-            <div className="flex gap-3">
-              <button onClick={() => { setLang('en'); }} className={`flex-1 py-3 rounded-xl font-black text-sm transition-all ${lang === 'en' ? 'bg-qatar-maroon text-white' : 'bg-white/10 text-white/50'}`}>EN</button>
-              <button onClick={() => { setLang('ru'); }} className={`flex-1 py-3 rounded-xl font-black text-sm transition-all ${lang === 'ru' ? 'bg-qatar-maroon text-white' : 'bg-white/10 text-white/50'}`}>RU</button>
-            </div>
+          <div className="px-8 pb-10">
             <a href="mailto:Info@go2market.qa" className="block text-center text-sm font-semibold text-white/40 hover:text-white transition-colors">
               Info@go2market.qa
             </a>
