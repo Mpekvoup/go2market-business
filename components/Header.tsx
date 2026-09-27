@@ -9,6 +9,28 @@ interface HeaderProps {
   setLang: (l: Language) => void;
 }
 
+const MAIN_SITE_URL = 'https://go2market.qa/';
+
+/**
+ * Build URL with attribution params forwarded from current page.
+ * Preserves utm_*, gclid, fbclid when navigating to main site.
+ */
+function buildHomeUrl(): string {
+  if (typeof window === 'undefined') return MAIN_SITE_URL;
+
+  const allowedParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid'];
+  const currentParams = new URLSearchParams(window.location.search);
+  const forwardParams = new URLSearchParams();
+
+  for (const key of allowedParams) {
+    const value = currentParams.get(key);
+    if (value) forwardParams.set(key, value);
+  }
+
+  const queryString = forwardParams.toString();
+  return queryString ? `${MAIN_SITE_URL}?${queryString}` : MAIN_SITE_URL;
+}
+
 const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
   const { siteType } = useSite();
   const [isScrolled, setIsScrolled] = useState(false);
@@ -145,6 +167,18 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
 
             {/* Desktop Nav */}
             <nav className="hidden lg:flex items-center space-x-8">
+              {/* Home link to main site */}
+              <a
+                href={MAIN_SITE_URL}
+                onClick={(e) => {
+                  e.preventDefault();
+                  window.location.href = buildHomeUrl();
+                }}
+                className="text-sm font-semibold text-white hover:text-qatar-maroon transition-colors uppercase"
+              >
+                {lang === 'en' ? 'Home' : 'Главная'}
+              </a>
+
               {navLinks.map((link) => (
                 isHomePage ? (
                   <a
@@ -273,6 +307,25 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
 
           {/* Links */}
           <nav className="flex flex-col px-8 py-8 gap-1 flex-grow">
+            {/* Home link to main site */}
+            <a
+              href={MAIN_SITE_URL}
+              onClick={(e) => {
+                e.preventDefault();
+                setIsMobileMenuOpen(false);
+                window.location.href = buildHomeUrl();
+              }}
+              className="flex items-center justify-between py-4 border-b border-white/5 text-white group min-h-[48px]"
+            >
+              <div className="flex items-center gap-4">
+                <span className="text-xs font-black text-white/20 w-5">01</span>
+                <span className="text-lg font-extrabold tracking-tight">{lang === 'en' ? 'Home' : 'Главная'}</span>
+              </div>
+              <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-qatar-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+              </svg>
+            </a>
+
             {navLinks.map((link, idx) => (
               isHomePage ? (
                 <a
@@ -282,7 +335,7 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
                   className="flex items-center justify-between py-4 border-b border-white/5 text-white group"
                 >
                   <div className="flex items-center gap-4">
-                    <span className="text-xs font-black text-white/20 w-5">{String(idx + 1).padStart(2, '0')}</span>
+                    <span className="text-xs font-black text-white/20 w-5">{String(idx + 2).padStart(2, '0')}</span>
                     <span className="text-lg font-extrabold tracking-tight">{link.label[lang]}</span>
                   </div>
                   <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-qatar-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -297,7 +350,7 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
                   className="flex items-center justify-between py-4 border-b border-white/5 text-white group"
                 >
                   <div className="flex items-center gap-4">
-                    <span className="text-xs font-black text-white/20 w-5">{String(idx + 1).padStart(2, '0')}</span>
+                    <span className="text-xs font-black text-white/20 w-5">{String(idx + 2).padStart(2, '0')}</span>
                     <span className="text-lg font-extrabold tracking-tight">{link.label[lang]}</span>
                   </div>
                   <svg className="w-4 h-4 opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all text-qatar-maroon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
