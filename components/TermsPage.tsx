@@ -13,29 +13,29 @@ const TermsPage: React.FC<Props> = ({ lang, setLang }) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header lang={lang} setLang={setLang} />
-      <main className="flex-grow bg-[#FCFCFD] py-24 md:py-32">
+      <main className="flex-grow bg-[#FCFCFD] dark:bg-qatar-night py-24 md:py-32">
         <div className="container mx-auto px-6 max-w-3xl">
-          <Link to="/" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 hover:text-qatar-maroon transition-colors mb-12">
+          <Link to="/" className="inline-flex items-center gap-2 text-sm font-semibold text-slate-400 dark:text-slate-500 hover:text-qatar-maroon dark:hover:text-rose-400 transition-colors mb-12">
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
             </svg>
             {lang === 'en' ? 'Back to Home' : 'На главную'}
           </Link>
 
-          <h2 className="text-xs font-black text-qatar-maroon uppercase tracking-[0.4em] mb-4">
+          <h2 className="text-xs font-black text-qatar-maroon dark:text-rose-400 uppercase tracking-[0.4em] mb-4">
             {lang === 'en' ? 'Legal' : 'Документы'}
           </h2>
-          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+          <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-6">
             {lang === 'en' ? 'Terms of Use' : 'Условия использования'}
           </h1>
-          <p className="text-slate-400 text-sm font-medium mb-16">
+          <p className="text-slate-400 dark:text-slate-500 text-sm font-medium mb-16">
             {lang === 'en' ? 'Last updated: February 2026' : 'Последнее обновление: февраль 2026'}
           </p>
 
-          <div className="space-y-12 text-slate-600 leading-relaxed font-medium">
+          <div className="space-y-12 text-slate-600 dark:text-slate-300 leading-relaxed font-medium">
 
             <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-4">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
                 {lang === 'en' ? '1. Acceptance of Terms' : '1. Принятие условий'}
               </h2>
               <p>
@@ -46,7 +46,7 @@ const TermsPage: React.FC<Props> = ({ lang, setLang }) => {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-4">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
                 {lang === 'en' ? '2. About the Service' : '2. О сервисе'}
               </h2>
               <p>
@@ -57,7 +57,7 @@ const TermsPage: React.FC<Props> = ({ lang, setLang }) => {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-4">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
                 {lang === 'en' ? '3. Intellectual Property' : '3. Интеллектуальная собственность'}
               </h2>
               <p>
@@ -68,11 +68,11 @@ const TermsPage: React.FC<Props> = ({ lang, setLang }) => {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-4">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
                 {lang === 'en' ? '4. User Conduct' : '4. Поведение пользователей'}
               </h2>
               <p className="mb-4">{lang === 'en' ? 'When using this website, you agree not to:' : 'Используя сайт, вы соглашаетесь не:'}</p>
-              <ul className="space-y-2 list-disc list-inside text-slate-500">
+              <ul className="space-y-2 list-disc list-inside text-slate-500 dark:text-slate-400">
                 <li>{lang === 'en' ? 'Submit false or misleading information via the contact form' : 'Отправлять ложную или вводящую в заблуждение информацию через форму'}</li>
                 <li>{lang === 'en' ? 'Attempt to gain unauthorised access to any part of the website' : 'Пытаться получить несанкционированный доступ к любой части сайта'}</li>
                 <li>{lang === 'en' ? 'Use the website for any unlawful purpose' : 'Использовать сайт в незаконных целях'}</li>
@@ -80,7 +80,7 @@ const TermsPage: React.FC<Props> = ({ lang, setLang }) => {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-4">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
                 {lang === 'en' ? '5. Limitation of Liability' : '5. Ограничение ответственности'}
               </h2>
               <p>
@@ -91,7 +91,7 @@ const TermsPage: React.FC<Props> = ({ lang, setLang }) => {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-4">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
                 {lang === 'en' ? '6. Governing Law' : '6. Применимое право'}
               </h2>
               <p>
@@ -102,7 +102,7 @@ const TermsPage: React.FC<Props> = ({ lang, setLang }) => {
             </section>
 
             <section>
-              <h2 className="text-xl font-bold text-slate-900 mb-4">
+              <h2 className="text-xl font-bold text-slate-900 dark:text-white mb-4">
                 {lang === 'en' ? '7. Contact' : '7. Контакты'}
               </h2>
               <p>
@@ -110,7 +110,7 @@ const TermsPage: React.FC<Props> = ({ lang, setLang }) => {
                   ? 'For any questions regarding these Terms, please contact us at:'
                   : 'По любым вопросам, связанным с настоящими Условиями, свяжитесь с нами:'}
               </p>
-              <p className="mt-4 font-semibold text-qatar-maroon">Info@go2market.qa</p>
+              <p className="mt-4 font-semibold text-qatar-maroon dark:text-rose-400">Info@go2market.qa</p>
             </section>
 
           </div>

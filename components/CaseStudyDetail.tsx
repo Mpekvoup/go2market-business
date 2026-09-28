@@ -34,34 +34,34 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ lang, setLang }) => {
       <main className="flex-grow">
 
         {/* ──────────────────── HERO ──────────────────── */}
-        <section className="relative pt-40 pb-20 md:pt-48 md:pb-28 bg-white overflow-hidden">
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-qatar-maroon opacity-[0.02] rounded-full blur-[120px] -translate-y-1/3 translate-x-1/3 pointer-events-none"></div>
+        <section className="relative pt-40 pb-20 md:pt-48 md:pb-28 bg-white dark:bg-qatar-night overflow-hidden">
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-qatar-maroon opacity-[0.02] dark:opacity-[0.05] rounded-full blur-[120px] -translate-y-1/3 translate-x-1/3 pointer-events-none"></div>
 
           <div className="container mx-auto px-6 relative z-10">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm font-medium text-slate-400 mb-12">
-              <Link to="/" className="hover:text-qatar-maroon transition-colors">
+            <nav className="flex items-center gap-2 text-sm font-medium text-slate-400 dark:text-slate-500 mb-12">
+              <Link to="/" className="hover:text-qatar-maroon dark:hover:text-rose-400 transition-colors">
                 {lang === 'en' ? 'Home' : 'Главная'}
               </Link>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-              <Link to="/case-studies" className="hover:text-qatar-maroon transition-colors">
+              <Link to="/case-studies" className="hover:text-qatar-maroon dark:hover:text-rose-400 transition-colors">
                 {lang === 'en' ? 'Case Studies' : 'Кейсы'}
               </Link>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-              <span className="text-slate-600">
+              <span className="text-slate-600 dark:text-slate-400">
                 {cs.company[lang]}
               </span>
             </nav>
 
             {/* Meta row */}
             <div className="flex items-center gap-5 mb-8">
-              <span className="text-[11px] font-black text-qatar-maroon uppercase tracking-[0.3em]">
+              <span className="text-[11px] font-black text-qatar-maroon dark:text-rose-400 uppercase tracking-[0.3em]">
                 {lang === 'en' ? 'Case' : 'Кейс'} {String(caseIndex + 1).padStart(2, '0')}
               </span>
-              <span className="inline-block px-4 py-1.5 rounded-full bg-qatar-maroon/5 text-qatar-maroon text-[11px] font-bold uppercase tracking-widest">
+              <span className="inline-block px-4 py-1.5 rounded-full bg-qatar-maroon/5 dark:bg-rose-400/10 text-qatar-maroon dark:text-rose-400 text-[11px] font-bold uppercase tracking-widest">
                 {cs.industry[lang]}
               </span>
-              <span className="text-sm text-slate-300 font-bold tracking-wider hidden md:inline">{cs.year}</span>
+              <span className="text-sm text-slate-300 dark:text-slate-600 font-bold tracking-wider hidden md:inline">{cs.year}</span>
             </div>
 
             {/* Title */}
@@ -70,10 +70,10 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ lang, setLang }) => {
                 <img
                   src={cs.logo}
                   alt={cs.company[lang]}
-                  className="h-20 w-auto object-contain mb-6"
+                  className="h-20 w-auto object-contain mb-6 dark:bg-white/90 dark:rounded-xl dark:p-2"
                 />
               )}
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-5">
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 dark:text-white leading-[1.1] mb-5">
                 {cs.company[lang]}
               </h1>
               <p className="text-2xl md:text-3xl text-slate-400 font-semibold">
@@ -98,7 +98,7 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ lang, setLang }) => {
         </section>
 
         {/* ──────────────────── CASE CONTENT ──────────────────── */}
-        <section className="py-24 md:py-32 bg-[#FCFCFD]">
+        <section className="py-24 md:py-32 bg-[#FCFCFD] dark:bg-qatar-night-surface">
           <div className="container mx-auto px-6">
             <div className="grid lg:grid-cols-12 gap-y-20 gap-x-12 lg:gap-x-24">
 
@@ -108,28 +108,28 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ lang, setLang }) => {
 
                   {/* Context */}
                   <div>
-                    <h2 className="text-[11px] font-black text-slate-900 uppercase tracking-[0.25em] mb-6 flex items-center gap-3">
-                      <span className="w-8 h-px bg-qatar-maroon"></span>
+                    <h2 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-[0.25em] mb-6 flex items-center gap-3">
+                      <span className="w-8 h-px bg-qatar-maroon dark:bg-rose-400"></span>
                       {lang === 'en' ? 'Context' : 'Контекст'}
                     </h2>
-                    <p className="text-slate-500 leading-[1.85] font-medium text-[15px]">
+                    <p className="text-slate-500 dark:text-slate-400 leading-[1.85] font-medium text-[15px]">
                       {cs.context[lang]}
                     </p>
                   </div>
 
                   {/* Challenges */}
                   <div>
-                    <h2 className="text-[11px] font-black text-slate-900 uppercase tracking-[0.25em] mb-6 flex items-center gap-3">
-                      <span className="w-8 h-px bg-qatar-maroon"></span>
+                    <h2 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-[0.25em] mb-6 flex items-center gap-3">
+                      <span className="w-8 h-px bg-qatar-maroon dark:bg-rose-400"></span>
                       {lang === 'en' ? 'Challenges' : 'Задачи'}
                     </h2>
                     <ul className="space-y-6">
                       {cs.challenges[lang].map((challenge: string, i: number) => (
                         <li key={i} className="flex items-start gap-4">
-                          <span className="w-7 h-7 rounded-full bg-qatar-maroon/5 flex items-center justify-center flex-shrink-0 mt-0.5">
-                            <span className="text-[11px] font-black text-qatar-maroon">{i + 1}</span>
+                          <span className="w-7 h-7 rounded-full bg-qatar-maroon/5 dark:bg-rose-400/10 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <span className="text-[11px] font-black text-qatar-maroon dark:text-rose-400">{i + 1}</span>
                           </span>
-                          <span className="text-slate-500 leading-[1.75] font-medium text-[15px]">{challenge}</span>
+                          <span className="text-slate-500 dark:text-slate-400 leading-[1.75] font-medium text-[15px]">{challenge}</span>
                         </li>
                       ))}
                     </ul>
@@ -142,28 +142,28 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ lang, setLang }) => {
 
                 {/* Our Approach */}
                 <div>
-                  <h2 className="text-[11px] font-black text-slate-900 uppercase tracking-[0.25em] mb-6 flex items-center gap-3">
-                    <span className="w-8 h-px bg-qatar-maroon"></span>
+                  <h2 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-[0.25em] mb-6 flex items-center gap-3">
+                    <span className="w-8 h-px bg-qatar-maroon dark:bg-rose-400"></span>
                     {lang === 'en' ? 'Our Approach' : 'Наш подход'}
                   </h2>
-                  <p className="text-slate-500 leading-[1.85] font-medium text-[15px]">
+                  <p className="text-slate-500 dark:text-slate-400 leading-[1.85] font-medium text-[15px]">
                     {cs.solution[lang]}
                   </p>
                 </div>
 
                 {/* Results cards */}
                 <div>
-                  <h2 className="text-[11px] font-black text-slate-900 uppercase tracking-[0.25em] mb-8 flex items-center gap-3">
-                    <span className="w-8 h-px bg-qatar-maroon"></span>
+                  <h2 className="text-[11px] font-black text-slate-900 dark:text-white uppercase tracking-[0.25em] mb-8 flex items-center gap-3">
+                    <span className="w-8 h-px bg-qatar-maroon dark:bg-rose-400"></span>
                     {lang === 'en' ? 'Results' : 'Результаты'}
                   </h2>
                   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                     {cs.results[lang].map((result: { metric: string; label: string }, i: number) => (
                       <div
                         key={i}
-                        className="bg-white p-6 md:p-8 rounded-[1.5rem] border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] hover:-translate-y-1 transition-premium min-w-0"
+                        className="bg-white dark:bg-white/[0.04] p-6 md:p-8 rounded-[1.5rem] border border-slate-100 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-black/10 hover:shadow-[0_20px_60px_-15px_rgba(0,0,0,0.06)] dark:hover:shadow-black/20 hover:-translate-y-1 transition-premium min-w-0"
                       >
-                        <div className="text-xl sm:text-2xl md:text-3xl font-black text-qatar-maroon mb-2 tracking-tight break-words">
+                        <div className="text-xl sm:text-2xl md:text-3xl font-black text-qatar-maroon dark:text-rose-400 mb-2 tracking-tight break-words">
                           {result.metric}
                         </div>
                         <div className="text-xs sm:text-[13px] text-slate-400 font-semibold leading-snug">
@@ -175,10 +175,10 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ lang, setLang }) => {
                 </div>
 
                 {/* Quote */}
-                <div className="bg-white p-10 md:p-12 rounded-[2rem] border border-slate-100 shadow-[0_4px_20px_rgba(0,0,0,0.03)] relative overflow-hidden">
-                  <div className="absolute top-0 left-0 w-1 h-full bg-qatar-maroon/20 rounded-full"></div>
+                <div className="bg-white dark:bg-white/[0.04] p-10 md:p-12 rounded-[2rem] border border-slate-100 dark:border-white/10 shadow-[0_4px_20px_rgba(0,0,0,0.03)] dark:shadow-black/10 relative overflow-hidden">
+                  <div className="absolute top-0 left-0 w-1 h-full bg-qatar-maroon/20 dark:bg-rose-400/30 rounded-full"></div>
                   <blockquote className="relative z-10 pl-6 md:pl-8">
-                    <p className="text-lg md:text-xl text-slate-700 leading-relaxed font-medium italic mb-6">
+                    <p className="text-lg md:text-xl text-slate-700 dark:text-slate-300 leading-relaxed font-medium italic mb-6">
                       {cs.quote[lang]}
                     </p>
                     <cite className="text-[13px] text-slate-400 font-bold not-italic uppercase tracking-wider">
@@ -192,7 +192,7 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ lang, setLang }) => {
         </section>
 
         {/* ──────────────────── PREV / NEXT NAVIGATION ──────────────────── */}
-        <section className="bg-white border-t border-slate-100">
+        <section className="bg-white dark:bg-qatar-night border-t border-slate-100 dark:border-white/10">
           <div className="container mx-auto px-6">
             <div className="grid grid-cols-2">
 
@@ -200,15 +200,15 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ lang, setLang }) => {
               {prevCase ? (
                 <Link
                   to={`/case-studies/${prevCase.slug}`}
-                  className="group py-16 md:py-20 pr-8 md:pr-16 border-r border-slate-100 transition-premium hover:bg-slate-50/50"
+                  className="group py-16 md:py-20 pr-8 md:pr-16 border-r border-slate-100 dark:border-white/10 transition-premium hover:bg-slate-50/50 dark:hover:bg-white/[0.02]"
                 >
-                  <div className="flex items-center gap-3 text-[11px] font-black text-slate-400 uppercase tracking-[0.25em] mb-4">
+                  <div className="flex items-center gap-3 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.25em] mb-4">
                     <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
                     </svg>
                     {lang === 'en' ? 'Previous Case' : 'Предыдущий кейс'}
                   </div>
-                  <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 group-hover:text-qatar-maroon transition-colors mb-2">
+                  <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-qatar-maroon dark:group-hover:text-rose-400 transition-colors mb-2">
                     {prevCase.company[lang]}
                   </h3>
                   <p className="text-sm text-slate-400 font-semibold">{prevCase.subtitle[lang]}</p>
@@ -216,15 +216,15 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ lang, setLang }) => {
               ) : (
                 <Link
                   to="/case-studies"
-                  className="group py-16 md:py-20 pr-8 md:pr-16 border-r border-slate-100 transition-premium hover:bg-slate-50/50"
+                  className="group py-16 md:py-20 pr-8 md:pr-16 border-r border-slate-100 dark:border-white/10 transition-premium hover:bg-slate-50/50 dark:hover:bg-white/[0.02]"
                 >
-                  <div className="flex items-center gap-3 text-[11px] font-black text-slate-400 uppercase tracking-[0.25em] mb-4">
+                  <div className="flex items-center gap-3 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.25em] mb-4">
                     <svg className="w-4 h-4 group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
                     </svg>
                     {lang === 'en' ? 'All Cases' : 'Все кейсы'}
                   </div>
-                  <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 group-hover:text-qatar-maroon transition-colors">
+                  <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-qatar-maroon dark:group-hover:text-rose-400 transition-colors">
                     {lang === 'en' ? 'Back to Case Studies' : 'Назад к кейсам'}
                   </h3>
                 </Link>
@@ -234,15 +234,15 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ lang, setLang }) => {
               {nextCase ? (
                 <Link
                   to={`/case-studies/${nextCase.slug}`}
-                  className="group py-16 md:py-20 pl-8 md:pl-16 text-right transition-premium hover:bg-slate-50/50"
+                  className="group py-16 md:py-20 pl-8 md:pl-16 text-right transition-premium hover:bg-slate-50/50 dark:hover:bg-white/[0.02]"
                 >
-                  <div className="flex items-center justify-end gap-3 text-[11px] font-black text-slate-400 uppercase tracking-[0.25em] mb-4">
+                  <div className="flex items-center justify-end gap-3 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.25em] mb-4">
                     {lang === 'en' ? 'Next Case' : 'Следующий кейс'}
                     <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </div>
-                  <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 group-hover:text-qatar-maroon transition-colors mb-2">
+                  <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-qatar-maroon dark:group-hover:text-rose-400 transition-colors mb-2">
                     {nextCase.company[lang]}
                   </h3>
                   <p className="text-sm text-slate-400 font-semibold">{nextCase.subtitle[lang]}</p>
@@ -250,15 +250,15 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ lang, setLang }) => {
               ) : (
                 <Link
                   to="/case-studies"
-                  className="group py-16 md:py-20 pl-8 md:pl-16 text-right transition-premium hover:bg-slate-50/50"
+                  className="group py-16 md:py-20 pl-8 md:pl-16 text-right transition-premium hover:bg-slate-50/50 dark:hover:bg-white/[0.02]"
                 >
-                  <div className="flex items-center justify-end gap-3 text-[11px] font-black text-slate-400 uppercase tracking-[0.25em] mb-4">
+                  <div className="flex items-center justify-end gap-3 text-[11px] font-black text-slate-400 dark:text-slate-500 uppercase tracking-[0.25em] mb-4">
                     {lang === 'en' ? 'All Cases' : 'Все кейсы'}
                     <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                     </svg>
                   </div>
-                  <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 group-hover:text-qatar-maroon transition-colors">
+                  <h3 className="text-xl md:text-2xl font-extrabold text-slate-900 dark:text-white group-hover:text-qatar-maroon dark:group-hover:text-rose-400 transition-colors">
                     {lang === 'en' ? 'Back to Case Studies' : 'Назад к кейсам'}
                   </h3>
                 </Link>
@@ -269,7 +269,7 @@ const CaseStudyDetail: React.FC<CaseStudyDetailProps> = ({ lang, setLang }) => {
         </section>
 
         {/* ──────────────────── CTA BANNER ──────────────────── */}
-        <section className="py-24 bg-white">
+        <section className="py-24 bg-white dark:bg-qatar-night">
           <div className="container mx-auto px-6">
             <div className="bg-gradient-to-br from-qatar-maroon to-[#5d1428] rounded-[60px] p-12 lg:p-24 relative overflow-hidden shadow-2xl">
               <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white opacity-5 rounded-full blur-[120px] pointer-events-none"></div>

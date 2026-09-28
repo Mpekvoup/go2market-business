@@ -23,32 +23,32 @@ const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ lang, setLang }) => {
       <main className="flex-grow">
 
         {/* ──────────────────── HERO ──────────────────── */}
-        <section className="relative pt-40 pb-24 md:pt-48 md:pb-32 bg-white overflow-hidden">
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-qatar-maroon opacity-[0.02] rounded-full blur-[120px] -translate-y-1/3 translate-x-1/3 pointer-events-none"></div>
-          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-slate-200 opacity-30 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
+        <section className="relative pt-40 pb-24 md:pt-48 md:pb-32 bg-white dark:bg-qatar-night overflow-hidden">
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-qatar-maroon opacity-[0.02] dark:opacity-[0.05] rounded-full blur-[120px] -translate-y-1/3 translate-x-1/3 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-slate-200 dark:bg-white/5 opacity-30 rounded-full blur-[100px] translate-y-1/3 -translate-x-1/4 pointer-events-none"></div>
 
           <div className="container mx-auto px-6 relative z-10">
             {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm font-medium text-slate-400 mb-12">
-              <Link to="/" className="hover:text-qatar-maroon transition-colors">
+            <nav className="flex items-center gap-2 text-sm font-medium text-slate-400 dark:text-slate-500 mb-12">
+              <Link to="/" className="hover:text-qatar-maroon dark:hover:text-rose-400 transition-colors">
                 {lang === 'en' ? 'Home' : 'Главная'}
               </Link>
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" /></svg>
-              <span className="text-slate-600">
+              <span className="text-slate-600 dark:text-slate-400">
                 {lang === 'en' ? 'Case Studies' : 'Кейсы'}
               </span>
             </nav>
 
             <div className="max-w-4xl">
-              <h1 className="text-xs font-black text-qatar-maroon uppercase tracking-[0.4em] mb-6">
+              <h1 className="text-xs font-black text-qatar-maroon dark:text-rose-400 uppercase tracking-[0.4em] mb-6">
                 {lang === 'en' ? 'Case Studies' : 'Наши кейсы'}
               </h1>
-              <p className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-8 text-balance">
+              <p className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-slate-900 dark:text-white leading-[1.1] mb-8 text-balance">
                 {lang === 'en'
                   ? 'Delivering measurable impact for every client'
                   : 'Измеримые результаты для каждого клиента'}
               </p>
-              <p className="text-xl md:text-2xl text-slate-400 font-medium leading-relaxed max-w-2xl">
+              <p className="text-xl md:text-2xl text-slate-400 dark:text-slate-400 font-medium leading-relaxed max-w-2xl">
                 {lang === 'en'
                   ? 'We partner with ambitious companies entering the Qatar market. These are their stories.'
                   : 'Мы работаем с амбициозными компаниями, выходящими на рынок Катара. Это их истории.'}
@@ -63,8 +63,8 @@ const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ lang, setLang }) => {
                 { value: '100%', label: { en: 'Client satisfaction', ru: 'Удовлетворённость клиентов' } },
               ].map((stat, i) => (
                 <div key={i} className="min-w-0">
-                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-qatar-maroon tracking-tight break-words">{stat.value}</div>
-                  <div className="text-xs sm:text-sm text-slate-400 font-semibold mt-1">{stat.label[lang]}</div>
+                  <div className="text-2xl sm:text-3xl md:text-4xl font-black text-qatar-maroon dark:text-rose-400 tracking-tight break-words">{stat.value}</div>
+                  <div className="text-xs sm:text-sm text-slate-400 dark:text-slate-500 font-semibold mt-1">{stat.label[lang]}</div>
                 </div>
               ))}
             </div>
@@ -72,7 +72,7 @@ const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ lang, setLang }) => {
         </section>
 
         {/* ──────────────────── CASE STUDY CARDS ──────────────────── */}
-        <section className="py-24 md:py-32 bg-gradient-to-b from-[#FCFCFD] to-white">
+        <section className="py-24 md:py-32 bg-gradient-to-b from-[#FCFCFD] to-white dark:from-qatar-night-surface dark:to-qatar-night">
           <div className="container mx-auto px-6">
             <div className="space-y-8">
               {CASE_STUDIES.map((cs, idx) => (
@@ -81,27 +81,27 @@ const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ lang, setLang }) => {
                   to={`/case-studies/${cs.slug}`}
                   className="group block"
                 >
-                  <article className="relative bg-white border border-slate-200/60 rounded-3xl p-8 md:p-12 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(114,28,36,0.15)] hover:border-qatar-maroon/20 hover:-translate-y-1 overflow-hidden">
+                  <article className="relative bg-white dark:bg-white/[0.04] border border-slate-200/60 dark:border-white/10 rounded-3xl p-8 md:p-12 transition-all duration-500 hover:shadow-[0_20px_60px_-15px_rgba(114,28,36,0.15)] dark:hover:shadow-black/30 hover:border-qatar-maroon/20 dark:hover:border-rose-400/30 hover:-translate-y-1 overflow-hidden">
 
                     {/* Background gradient on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-qatar-maroon/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div className="absolute inset-0 bg-gradient-to-br from-qatar-maroon/[0.02] dark:from-rose-400/[0.02] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
 
                     {/* Accent line */}
-                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-qatar-maroon to-qatar-maroon/20 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
+                    <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-qatar-maroon dark:from-rose-400 to-qatar-maroon/20 dark:to-rose-400/20 transform scale-y-0 group-hover:scale-y-100 transition-transform duration-500 origin-top"></div>
 
                     <div className="relative z-10">
                       {/* Top row: number + industry + year */}
                       <div className="flex items-center justify-between mb-8 md:mb-10">
                         <div className="flex items-center gap-4">
-                          <span className="text-xs font-black text-qatar-maroon uppercase tracking-[0.3em] bg-qatar-maroon/5 px-4 py-2 rounded-full">
+                          <span className="text-xs font-black text-qatar-maroon dark:text-rose-400 uppercase tracking-[0.3em] bg-qatar-maroon/5 dark:bg-rose-400/10 px-4 py-2 rounded-full">
                             {lang === 'en' ? 'Case' : 'Кейс'} {String(idx + 1).padStart(2, '0')}
                           </span>
-                          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-slate-100 to-slate-50 text-slate-700 text-xs font-bold uppercase tracking-wider border border-slate-200/50 group-hover:border-qatar-maroon/20 transition-colors">
-                            <span className="w-1.5 h-1.5 rounded-full bg-qatar-maroon"></span>
+                          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-slate-100 to-slate-50 dark:from-white/[0.05] dark:to-white/[0.02] text-slate-700 dark:text-slate-300 text-xs font-bold uppercase tracking-wider border border-slate-200/50 dark:border-white/10 group-hover:border-qatar-maroon/20 dark:group-hover:border-rose-400/30 transition-colors">
+                            <span className="w-1.5 h-1.5 rounded-full bg-qatar-maroon dark:bg-rose-400"></span>
                             {cs.industry[lang]}
                           </span>
                         </div>
-                        <span className="text-sm text-slate-300 font-bold tracking-wider hidden md:block group-hover:text-qatar-maroon/40 transition-colors">{cs.year}</span>
+                        <span className="text-sm text-slate-300 dark:text-slate-600 font-bold tracking-wider hidden md:block group-hover:text-qatar-maroon/40 dark:group-hover:text-rose-400/40 transition-colors">{cs.year}</span>
                       </div>
 
                       {/* Main content row */}
@@ -110,7 +110,7 @@ const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ lang, setLang }) => {
                         {/* Left: Company + subtitle */}
                         <div className="lg:col-span-5">
                           {cs.logo && (
-                            <div className="mb-6 p-4 bg-slate-50 rounded-2xl inline-block group-hover:bg-white group-hover:shadow-sm transition-all duration-300">
+                            <div className="mb-6 p-4 bg-slate-50 dark:bg-white/90 rounded-2xl inline-block group-hover:bg-white group-hover:shadow-sm transition-all duration-300">
                               <img
                                 src={cs.logo}
                                 alt={`${cs.company[lang]} - ${cs.industry[lang]} ${lang === 'en' ? 'case study by G2M International Qatar' : 'кейс от G2M International Qatar'}`}
@@ -120,28 +120,28 @@ const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ lang, setLang }) => {
                               />
                             </div>
                           )}
-                          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-[1.1] mb-4 group-hover:text-qatar-maroon transition-colors duration-300">
+                          <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white leading-[1.1] mb-4 group-hover:text-qatar-maroon dark:group-hover:text-rose-400 transition-colors duration-300">
                             {cs.company[lang]}
                           </h2>
-                          <p className="text-lg text-slate-500 font-medium leading-relaxed">
+                          <p className="text-lg text-slate-500 dark:text-slate-400 font-medium leading-relaxed">
                             {cs.subtitle[lang]}
                           </p>
                         </div>
 
                         {/* Center: Context preview */}
                         <div className="lg:col-span-5">
-                          <p className="text-slate-600 leading-[1.8] font-medium text-base line-clamp-3 mb-8">
+                          <p className="text-slate-600 dark:text-slate-300 leading-[1.8] font-medium text-base line-clamp-3 mb-8">
                             {cs.context[lang]}
                           </p>
 
                           {/* Results preview - Enhanced design */}
-                          <div className="grid grid-cols-3 gap-6 p-6 bg-gradient-to-br from-slate-50 to-white rounded-2xl border border-slate-100 group-hover:border-qatar-maroon/10 group-hover:shadow-sm transition-all duration-300">
+                          <div className="grid grid-cols-3 gap-6 p-6 bg-gradient-to-br from-slate-50 to-white dark:from-white/[0.04] dark:to-white/[0.02] rounded-2xl border border-slate-100 dark:border-white/10 group-hover:border-qatar-maroon/10 dark:group-hover:border-rose-400/20 group-hover:shadow-sm transition-all duration-300">
                             {cs.results[lang].slice(0, 3).map((result, i) => (
                               <div key={i} className="text-center">
-                                <div className="text-2xl md:text-3xl font-black bg-gradient-to-br from-qatar-maroon to-qatar-maroon/70 bg-clip-text text-transparent tracking-tight mb-1">
+                                <div className="text-2xl md:text-3xl font-black bg-gradient-to-br from-qatar-maroon to-qatar-maroon/70 dark:from-rose-400 dark:to-rose-400/70 bg-clip-text text-transparent tracking-tight mb-1">
                                   {result.metric}
                                 </div>
-                                <div className="text-[10px] text-slate-500 font-bold uppercase tracking-wide leading-tight">
+                                <div className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wide leading-tight">
                                   {result.label}
                                 </div>
                               </div>
@@ -151,8 +151,8 @@ const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ lang, setLang }) => {
 
                         {/* Right: Arrow */}
                         <div className="lg:col-span-2 flex lg:justify-end items-start">
-                          <div className="w-16 h-16 rounded-full border-2 border-slate-200 flex items-center justify-center group-hover:border-qatar-maroon group-hover:bg-qatar-maroon group-hover:scale-110 transition-all duration-300 shadow-sm">
-                            <svg className="w-6 h-6 text-slate-400 group-hover:text-white transition-all duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
+                          <div className="w-16 h-16 rounded-full border-2 border-slate-200 dark:border-white/10 flex items-center justify-center group-hover:border-qatar-maroon group-hover:bg-qatar-maroon group-hover:scale-110 transition-all duration-300 shadow-sm">
+                            <svg className="w-6 h-6 text-slate-400 dark:text-slate-500 group-hover:text-white transition-all duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2.5}>
                               <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                             </svg>
                           </div>
@@ -167,7 +167,7 @@ const CaseStudiesPage: React.FC<CaseStudiesPageProps> = ({ lang, setLang }) => {
         </section>
 
         {/* ──────────────────── CTA BANNER ──────────────────── */}
-        <section className="py-24 bg-white">
+        <section className="py-24 bg-white dark:bg-qatar-night">
           <div className="container mx-auto px-6">
             <div className="bg-gradient-to-br from-qatar-maroon to-[#5d1428] rounded-[60px] p-12 lg:p-24 relative overflow-hidden shadow-2xl">
               <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-white opacity-5 rounded-full blur-[120px] pointer-events-none"></div>

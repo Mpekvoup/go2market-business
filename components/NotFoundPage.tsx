@@ -13,15 +13,15 @@ const NotFoundPage: React.FC<Props> = ({ lang, setLang }) => {
   return (
     <div className="flex flex-col min-h-screen">
       <Header lang={lang} setLang={setLang} />
-      <main className="flex-grow bg-[#FCFCFD] flex items-center justify-center py-24">
+      <main className="flex-grow bg-[#FCFCFD] dark:bg-qatar-night flex items-center justify-center py-24">
         <div className="text-center px-6">
-          <p className="text-[120px] md:text-[180px] font-black text-slate-100 leading-none select-none">
+          <p className="text-[120px] md:text-[180px] font-black text-slate-100 dark:text-white/[0.05] leading-none select-none">
             404
           </p>
-          <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 -mt-4 mb-4">
+          <h1 className="text-2xl md:text-3xl font-extrabold text-slate-900 dark:text-white -mt-4 mb-4">
             {lang === 'en' ? 'Page not found' : 'Страница не найдена'}
           </h1>
-          <p className="text-slate-400 font-medium mb-10 max-w-sm mx-auto">
+          <p className="text-slate-400 dark:text-slate-500 font-medium mb-10 max-w-sm mx-auto">
             {lang === 'en'
               ? 'The page you are looking for does not exist or has been moved.'
               : 'Страница, которую вы ищете, не существует или была перемещена.'}

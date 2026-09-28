@@ -98,7 +98,7 @@ const ScrollToTop = () => {
     <button
       onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
       aria-label="Scroll to top"
-      className={`fixed bottom-32 right-10 z-50 w-12 h-12 bg-white border border-slate-200 text-slate-700 rounded-full shadow-lg flex items-center justify-center transition-all duration-300 hover:bg-qatar-maroon hover:text-white hover:border-qatar-maroon hover:scale-110 active:scale-95 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
+      className={`fixed bottom-32 right-10 z-50 w-12 h-12 bg-white dark:bg-qatar-night-elevated border border-slate-200 dark:border-white/10 text-slate-700 dark:text-slate-300 rounded-full shadow-lg dark:shadow-black/30 flex items-center justify-center transition-all duration-300 hover:bg-qatar-maroon hover:text-white hover:border-qatar-maroon dark:hover:border-qatar-maroon hover:scale-110 active:scale-95 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'
         }`}
     >
       <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
