@@ -1,12 +1,21 @@
 @import "tailwindcss";
 
+@custom-variant dark (&:where(.dark, .dark *));
+
 @theme {
   --color-qatar-maroon: #8d1b3d;
   --color-qatar-maroon-dark: #701530;
+  --color-qatar-night: #0b1220;
+  --color-qatar-night-surface: #131d2e;
+  --color-qatar-night-elevated: #1b283c;
 }
 
 :root {
-  color-scheme: light only;
+  color-scheme: light;
+}
+
+html.dark {
+  color-scheme: dark;
 }
 
 body {

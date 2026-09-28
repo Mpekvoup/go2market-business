@@ -3,7 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="color-scheme" content="light" />
+    <meta name="color-scheme" content="light dark" />
+
+    <!-- Anti-flash script: apply dark mode before render -->
+    <script>
+      (function(){try{var t=localStorage.getItem('g2m-theme');var d=t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme:dark)').matches);document.documentElement.classList.toggle('dark',d);document.documentElement.style.colorScheme=d?'dark':'light';}catch(e){document.documentElement.classList.remove('dark');document.documentElement.style.colorScheme='light';}})();
+    </script>
     <meta name="yandex-verification" content="f90bd24a745bd34f" />
     <meta name="facebook-domain-verification" content="g1g1qanss6lp10r8s9r2jiwiixq0u2" />
 
@@ -151,7 +156,7 @@
     <link rel="preload" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'" />
     <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" /></noscript>
   </head>
-  <body class="bg-[#FCFCFD] text-slate-900 overflow-x-hidden selection:bg-qatar-maroon selection:text-white">
+  <body class="bg-[#FCFCFD] dark:bg-slate-950 text-slate-900 dark:text-slate-100 overflow-x-hidden selection:bg-qatar-maroon selection:text-white transition-colors duration-200">
     <!-- Yandex Metrika Noscript -->
     <noscript><div><img src="https://mc.yandex.ru/watch/106830866" style="position:absolute;left:-9999px;" alt="" /></div></noscript>
 

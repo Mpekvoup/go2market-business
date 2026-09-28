@@ -1,8 +1,8 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Language } from '../types';
 import { useSite } from '../src/config/SiteContext';
+import { ThemeToggle } from './ThemeToggle';
 
 interface HeaderProps {
   lang: Language;
@@ -166,7 +166,7 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
             )}
 
             {/* Desktop Nav */}
-            <nav className="hidden lg:flex items-center space-x-8">
+            <nav className="hidden xl:flex items-center space-x-8">
               {/* Home link to main site */}
               <a
                 href={MAIN_SITE_URL}
@@ -216,6 +216,9 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
                 </button>
               </div>
 
+              {/* Theme Toggle */}
+              <ThemeToggle lang={lang} />
+
               {/* CTA Button */}
               {isHomePage ? (
                 <a
@@ -236,7 +239,7 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
             </nav>
 
             {/* Mobile Controls: Language Switcher + Menu Toggle */}
-            <div className="lg:hidden flex items-center gap-2">
+            <div className="xl:hidden flex items-center gap-2">
               {/* Mobile Language Switcher */}
               <div className="flex items-center bg-white/10 p-0.5 rounded-md">
                 <button
@@ -303,6 +306,11 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
+          </div>
+
+          {/* Theme Toggle */}
+          <div className="px-8 pt-6">
+            <ThemeToggle lang={lang} variant="menu" />
           </div>
 
           {/* Links */}
