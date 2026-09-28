@@ -219,10 +219,10 @@ const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="py-24 md:py-32 bg-white">
+        <section id="faq" className="py-24 md:py-32 bg-white dark:bg-qatar-night">
             <div className="container mx-auto px-6">
               <div className="max-w-3xl mx-auto text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+                <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-6">
                   {content.faq.title[lang]}
                 </h2>
               </div>
@@ -231,12 +231,12 @@ const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }
                 {content.faq.items.map((item, index) => (
                   <details
                     key={index}
-                    className="group p-6 bg-slate-50 rounded-xl border border-slate-100 hover:border-qatar-maroon/30 transition-all"
+                    className="group p-6 bg-slate-50 dark:bg-white/[0.04] rounded-xl border border-slate-100 dark:border-white/10 hover:border-qatar-maroon/30 dark:hover:border-rose-400/30 transition-all"
                   >
-                    <summary className="font-bold text-slate-900 cursor-pointer list-none flex items-center justify-between">
+                    <summary className="font-bold text-slate-900 dark:text-white cursor-pointer list-none flex items-center justify-between">
                       {item.question[lang]}
                       <svg
-                        className="w-5 h-5 text-qatar-maroon group-open:rotate-180 transition-transform"
+                        className="w-5 h-5 text-qatar-maroon dark:text-rose-400 group-open:rotate-180 transition-transform"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -244,7 +244,7 @@ const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </summary>
-                    <p className="mt-4 text-slate-600 leading-relaxed">
+                    <p className="mt-4 text-slate-600 dark:text-slate-300 leading-relaxed">
                       {item.answer[lang]}
                     </p>
                   </details>

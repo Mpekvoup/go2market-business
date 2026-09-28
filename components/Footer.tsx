@@ -36,10 +36,10 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
   };
 
   return (
-    <footer className="bg-slate-900 text-white">
+    <footer className="bg-slate-900 dark:bg-[#070c15] text-white">
 
       {/* CTA Banner */}
-      <div className="border-b border-white/5">
+      <div className="border-b border-white/5 dark:border-white/10">
         <div className="container mx-auto px-6 py-16 flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <p className="text-xs font-black text-qatar-maroon uppercase tracking-[0.4em] mb-3">
@@ -166,7 +166,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
       </div>
 
       {/* Bottom Bar */}
-      <div className="border-t border-white/5">
+      <div className="border-t border-white/5 dark:border-white/10">
         <div className="container mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-start gap-6">
           <p className="text-slate-300 text-xs font-bold tracking-tight">
             © 2025 go2market.qa. {lang === 'en' ? 'All rights reserved.' : 'Все права защищены.'}

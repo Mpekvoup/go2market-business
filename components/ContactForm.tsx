@@ -230,11 +230,11 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
       <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-300">
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-sm font-black text-qatar-maroon/60 uppercase tracking-widest">
+            <span className="text-sm font-black text-qatar-maroon/60 dark:text-rose-400/60 uppercase tracking-widest">
               {lang === 'en' ? 'Question' : 'Вопрос'} {currentStep + 1}/{steps.length}
             </span>
           </div>
-          <h3 className="text-3xl lg:text-4xl font-extrabold text-slate-900 leading-tight">
+          <h3 className="text-3xl lg:text-4xl font-extrabold text-slate-900 dark:text-white leading-tight">
             {step.question[lang]}
           </h3>
         </div>
@@ -253,7 +253,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
               }
             }}
             placeholder={step.placeholder}
-            className="w-full px-8 py-6 text-xl bg-slate-50 border-2 border-slate-200 focus:border-qatar-maroon focus:bg-white rounded-3xl outline-none transition-all font-medium"
+            className="w-full px-8 py-6 text-xl bg-slate-50 dark:bg-white/[0.05] text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 border-2 border-slate-200 dark:border-white/15 focus:border-qatar-maroon dark:focus:border-rose-400 focus:bg-white dark:focus:bg-white/[0.08] rounded-3xl outline-none transition-all font-medium"
           />
         ) : step.type === 'select' ? (
           <div className="space-y-3">
@@ -268,7 +268,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
                 className={`w-full px-8 py-5 text-left text-lg font-bold rounded-2xl transition-all border-2 ${
                   value === option.value
                     ? 'bg-qatar-maroon text-white border-qatar-maroon shadow-lg scale-[1.02]'
-                    : 'bg-slate-50 text-slate-700 border-slate-200 hover:border-qatar-maroon/30 hover:bg-white'
+                    : 'bg-slate-50 dark:bg-white/[0.05] text-slate-700 dark:text-slate-200 border-slate-200 dark:border-white/15 hover:border-qatar-maroon/30 dark:hover:border-rose-400/30 hover:bg-white dark:hover:bg-white/[0.08]'
                 }`}
               >
                 {option.label[lang]}
@@ -281,7 +281,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
             onChange={(e) => updateField(step.field, e.target.value)}
             placeholder={typeof step.placeholder === 'object' ? step.placeholder[lang] : step.placeholder}
             rows={5}
-            className="w-full px-8 py-6 text-xl bg-slate-50 border-2 border-slate-200 focus:border-qatar-maroon focus:bg-white rounded-3xl outline-none transition-all font-medium resize-none"
+            className="w-full px-8 py-6 text-xl bg-slate-50 dark:bg-white/[0.05] text-slate-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 border-2 border-slate-200 dark:border-white/15 focus:border-qatar-maroon dark:focus:border-rose-400 focus:bg-white dark:focus:bg-white/[0.08] rounded-3xl outline-none transition-all font-medium resize-none"
           />
         ) : null}
       </div>
@@ -289,9 +289,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
   };
 
   return (
-    <section id="contacts" className="py-32 bg-white">
+    <section id="contacts" className="py-32 bg-white dark:bg-qatar-night-surface">
       <div className="container mx-auto px-6">
-        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row bg-[#0F172A] rounded-[3rem] shadow-2xl overflow-hidden min-h-[700px]">
+        <div className="max-w-6xl mx-auto flex flex-col lg:flex-row bg-[#0F172A] rounded-[3rem] shadow-2xl dark:shadow-black/40 overflow-hidden min-h-[700px]">
           <div className="lg:w-[45%] p-12 lg:p-20 bg-qatar-maroon text-white flex flex-col relative overflow-hidden">
 
             <div className="relative z-10 space-y-8 flex-grow">
@@ -334,17 +334,17 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
             </div>
           </div>
 
-          <div className="lg:w-[55%] p-12 lg:p-20 bg-white">
+          <div className="lg:w-[55%] p-12 lg:p-20 bg-white dark:bg-qatar-night-elevated">
             {status === 'success' ? (
               <div className="h-full flex flex-col items-center justify-center text-center space-y-8 animate-in fade-in duration-500">
-                <div className="w-24 h-24 bg-green-50 text-green-500 rounded-full flex items-center justify-center border-4 border-green-100/50">
+                <div className="w-24 h-24 bg-green-50 dark:bg-emerald-400/10 text-green-500 dark:text-emerald-400 rounded-full flex items-center justify-center border-4 border-green-100/50 dark:border-emerald-400/20">
                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M5 13l4 4L19 7" /></svg>
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-3xl font-extrabold text-slate-900">
+                  <h3 className="text-3xl font-extrabold text-slate-900 dark:text-white">
                     {lang === 'en' ? 'Got it!' : 'Получили!'}
                   </h3>
-                  <p className="text-slate-500 font-medium text-lg">
+                  <p className="text-slate-500 dark:text-slate-400 font-medium text-lg">
                     {lang === 'en' ? "We'll get back to you within 24 hours." : 'Ответим в течение 24 часов.'}
                   </p>
                 </div>
@@ -356,35 +356,35 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
                     url.searchParams.delete('success');
                     window.history.pushState({}, '', url.toString());
                   }}
-                  className="bg-slate-50 text-slate-400 px-8 py-3 rounded-xl font-bold text-sm hover:bg-slate-100 hover:text-slate-600 transition-all"
+                  className="bg-slate-50 dark:bg-white/[0.05] text-slate-400 dark:text-slate-500 px-8 py-3 rounded-xl font-bold text-sm hover:bg-slate-100 dark:hover:bg-white/[0.08] hover:text-slate-600 dark:hover:text-slate-300 transition-all"
                 >
                   {lang === 'en' ? 'Send another request' : 'Отправить заново'}
                 </button>
               </div>
             ) : status === 'limited' ? (
               <div className="h-full flex flex-col items-center justify-center text-center space-y-8">
-                <div className="w-24 h-24 bg-amber-50 text-amber-500 rounded-full flex items-center justify-center border-4 border-amber-100/50">
+                <div className="w-24 h-24 bg-amber-50 dark:bg-amber-400/10 text-amber-500 dark:text-amber-400 rounded-full flex items-center justify-center border-4 border-amber-100/50 dark:border-amber-400/20">
                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M12 9v2m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-3xl font-extrabold text-slate-900">
+                  <h3 className="text-3xl font-extrabold text-slate-900 dark:text-white">
                     {lang === 'en' ? 'Daily Limit Reached' : 'Дневной лимит достигнут'}
                   </h3>
-                  <p className="text-slate-500 font-medium text-lg">
+                  <p className="text-slate-500 dark:text-slate-400 font-medium text-lg">
                     {lang === 'en' ? 'You have reached the maximum number of requests for today. Please try again tomorrow.' : 'Вы достигли максимального количества заявок на сегодня. Попробуйте завтра.'}
                   </p>
                 </div>
               </div>
             ) : status === 'error' ? (
               <div className="h-full flex flex-col items-center justify-center text-center space-y-8">
-                <div className="w-24 h-24 bg-red-50 text-red-500 rounded-full flex items-center justify-center border-4 border-red-100/50">
+                <div className="w-24 h-24 bg-red-50 dark:bg-red-400/10 text-red-500 dark:text-red-400 rounded-full flex items-center justify-center border-4 border-red-100/50 dark:border-red-400/20">
                   <svg className="w-12 h-12" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M6 18L18 6M6 6l12 12" /></svg>
                 </div>
                 <div className="space-y-3">
-                  <h3 className="text-3xl font-extrabold text-slate-900">
+                  <h3 className="text-3xl font-extrabold text-slate-900 dark:text-white">
                     {lang === 'en' ? 'Error Occurred' : 'Произошла ошибка'}
                   </h3>
-                  <p className="text-slate-500 font-medium text-lg">
+                  <p className="text-slate-500 dark:text-slate-400 font-medium text-lg">
                     {lang === 'en' ? 'Please try again later.' : 'Пожалуйста, попробуйте позже.'}
                   </p>
                 </div>
@@ -396,7 +396,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
                     url.searchParams.delete('success');
                     window.history.pushState({}, '', url.toString());
                   }}
-                  className="bg-slate-900 text-white px-8 py-3 rounded-xl font-bold text-sm hover:bg-black transition-all"
+                  className="bg-slate-900 dark:bg-white/10 text-white px-8 py-3 rounded-xl font-bold text-sm hover:bg-black dark:hover:bg-white/15 transition-all"
                 >
                   {lang === 'en' ? 'Try Again' : 'Попробовать снова'}
                 </button>
@@ -411,7 +411,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
                       <div
                         key={index}
                         className={`h-1.5 rounded-full flex-1 transition-all duration-500 ${
-                          index <= currentStep ? 'bg-qatar-maroon' : 'bg-slate-200'
+                          index <= currentStep ? 'bg-qatar-maroon' : 'bg-slate-200 dark:bg-white/10'
                         }`}
                       />
                     ))}
@@ -430,7 +430,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
                       <button
                         type="button"
                         onClick={handleBack}
-                        className="px-8 py-4 bg-slate-100 hover:bg-slate-200 text-slate-700 rounded-2xl font-bold transition-all flex items-center gap-2"
+                        className="px-8 py-4 bg-slate-100 dark:bg-white/[0.05] hover:bg-slate-200 dark:hover:bg-white/[0.08] text-slate-700 dark:text-slate-200 rounded-2xl font-bold transition-all flex items-center gap-2"
                       >
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
@@ -444,7 +444,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
                         type="button"
                         onClick={handleNext}
                         disabled={!formData[steps[currentStep].field]}
-                        className="flex-1 bg-slate-900 hover:bg-black text-white py-4 rounded-2xl font-bold text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                        className="flex-1 bg-slate-900 dark:bg-white/10 hover:bg-black dark:hover:bg-white/15 text-white py-4 rounded-2xl font-bold text-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                       >
                         {lang === 'en' ? 'Next' : 'Далее'}
                         <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -455,7 +455,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
                       <button
                         type="submit"
                         disabled={status === 'loading' || cooldown > 0 || !formData.message}
-                        className="flex-1 bg-qatar-maroon hover:bg-qatar-maroon/90 text-white py-4 rounded-2xl font-bold text-lg shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
+                        className="flex-1 bg-qatar-maroon hover:bg-qatar-maroon/90 text-white py-4 rounded-2xl font-bold text-lg shadow-xl dark:shadow-qatar-maroon/20 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-3"
                       >
                         {status === 'loading' ? (
                           <>
@@ -478,18 +478,18 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
                   </div>
 
                   {cooldown > 0 && (
-                    <p className="text-center text-xs text-slate-400 font-bold uppercase tracking-widest">
+                    <p className="text-center text-xs text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest">
                       {lang === 'en' ? `Please wait ${cooldown}s before sending another request.` : `Подождите ${cooldown}с перед повторной отправкой.`}
                     </p>
                   )}
 
-                  <p className="text-center text-xs text-slate-400 font-bold uppercase tracking-widest">
+                  <p className="text-center text-xs text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest">
                     {lang === 'en' ? 'Your data stays private' : 'Ваши данные остаются приватными'}
                   </p>
 
                   {/* Hint for Enter key */}
                   {currentStep < steps.length - 1 && steps[currentStep].type !== 'select' && (
-                    <p className="text-center text-xs text-slate-400 font-medium">
+                    <p className="text-center text-xs text-slate-400 dark:text-slate-500 font-medium">
                       {lang === 'en' ? 'Press Enter ↵ to continue' : 'Нажмите Enter ↵ чтобы продолжить'}
                     </p>
                   )}
