@@ -88,13 +88,13 @@ const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }
         </section>
 
         {/* Consulting Areas */}
-        <section id="consulting-areas" className="py-24 md:py-32 bg-white">
+        <section id="consulting-areas" className="py-24 md:py-32 bg-white dark:bg-qatar-night">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-6">
                 {content.consultingAreas.title[lang]}
               </h2>
-              <p className="text-xl text-slate-600">
+              <p className="text-xl text-slate-600 dark:text-slate-300">
                 {content.consultingAreas.subtitle[lang]}
               </p>
             </div>
@@ -103,9 +103,9 @@ const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }
               {content.consultingAreas.areas.map((area, index) => (
                 <div
                   key={index}
-                  className="p-8 bg-slate-50 hover:bg-white border border-slate-100 hover:border-qatar-maroon/20 rounded-2xl transition-all hover:shadow-lg group"
+                  className="p-8 bg-slate-50 dark:bg-white/[0.04] hover:bg-white dark:hover:bg-white/[0.07] border border-slate-100 dark:border-white/10 hover:border-qatar-maroon/20 dark:hover:border-rose-400/30 rounded-2xl transition-all hover:shadow-lg dark:hover:shadow-black/20 group"
                 >
-                  <div className="w-14 h-14 bg-qatar-maroon/10 text-qatar-maroon rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                  <div className="w-14 h-14 bg-qatar-maroon/10 dark:bg-rose-400/10 text-qatar-maroon dark:text-rose-400 rounded-xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                     <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       {area.icon === 'target' && <><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></>}
                       {area.icon === 'trending-up' && <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />}
@@ -115,10 +115,10 @@ const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }
                       {area.icon === 'compass' && <><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></>}
                     </svg>
                   </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">
+                  <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-3">
                     {area.title[lang]}
                   </h3>
-                  <p className="text-slate-600 leading-relaxed">
+                  <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
                     {area.description[lang]}
                   </p>
                 </div>
@@ -128,13 +128,13 @@ const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }
         </section>
 
         {/* Who We Help */}
-        <section className="py-24 md:py-32 bg-slate-50">
+        <section className="py-24 md:py-32 bg-slate-50 dark:bg-qatar-night-surface">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-6">
                 {content.whoWeHelp.title[lang]}
               </h2>
-              <p className="text-xl text-slate-600">
+              <p className="text-xl text-slate-600 dark:text-slate-300">
                 {content.whoWeHelp.subtitle[lang]}
               </p>
             </div>
@@ -143,12 +143,12 @@ const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }
               {content.whoWeHelp.audience.map((item, index) => (
                 <div
                   key={index}
-                  className="p-6 bg-white rounded-xl border border-slate-100 hover:border-qatar-maroon/30 hover:shadow-md transition-all"
+                  className="p-6 bg-white dark:bg-white/[0.04] rounded-xl border border-slate-100 dark:border-white/10 hover:border-qatar-maroon/30 dark:hover:border-rose-400/30 hover:shadow-md dark:hover:shadow-black/20 transition-all"
                 >
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
                     {item.title[lang]}
                   </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">
+                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                     {item.description[lang]}
                   </p>
                 </div>
@@ -158,13 +158,13 @@ const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }
         </section>
 
         {/* Process */}
-        <section id="process" className="py-24 md:py-32 bg-white">
+        <section id="process" className="py-24 md:py-32 bg-white dark:bg-qatar-night">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-6">
                 {content.process.title[lang]}
               </h2>
-              <p className="text-xl text-slate-600">
+              <p className="text-xl text-slate-600 dark:text-slate-300">
                 {content.process.subtitle[lang]}
               </p>
             </div>
@@ -173,7 +173,7 @@ const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }
               {content.process.steps.map((step, index) => (
                 <div
                   key={index}
-                  className="flex gap-6 p-6 bg-slate-50 rounded-xl hover:bg-white hover:shadow-md transition-all border border-slate-100"
+                  className="flex gap-6 p-6 bg-slate-50 dark:bg-white/[0.04] rounded-xl hover:bg-white dark:hover:bg-white/[0.07] hover:shadow-md dark:hover:shadow-black/20 transition-all border border-slate-100 dark:border-white/10"
                 >
                   <div className="flex-shrink-0">
                     <div className="w-12 h-12 bg-qatar-maroon text-white rounded-xl flex items-center justify-center font-bold text-lg">
@@ -181,10 +181,10 @@ const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }
                     </div>
                   </div>
                   <div>
-                    <h3 className="text-xl font-bold text-slate-900 mb-2">
+                    <h3 className="text-xl font-bold text-slate-900 dark:text-white mb-2">
                       {step.title[lang]}
                     </h3>
-                    <p className="text-slate-600 leading-relaxed">
+                    <p className="text-slate-600 dark:text-slate-300 leading-relaxed">
                       {step.description[lang]}
                     </p>
                   </div>
@@ -195,21 +195,21 @@ const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }
         </section>
 
         {/* Why G2M */}
-        <section className="py-24 md:py-32 bg-slate-50">
+        <section className="py-24 md:py-32 bg-slate-50 dark:bg-qatar-night-surface">
           <div className="container mx-auto px-6">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 mb-6">
+              <h2 className="text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white mb-6">
                 {content.whyG2M.title[lang]}
               </h2>
             </div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
               {content.whyG2M.reasons.map((reason, index) => (
-                <div key={index} className="p-6 bg-white rounded-xl border border-slate-100">
-                  <h3 className="text-lg font-bold text-slate-900 mb-2">
+                <div key={index} className="p-6 bg-white dark:bg-white/[0.04] rounded-xl border border-slate-100 dark:border-white/10">
+                  <h3 className="text-lg font-bold text-slate-900 dark:text-white mb-2">
                     {reason.title[lang]}
                   </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">
+                  <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed">
                     {reason.description[lang]}
                   </p>
                 </div>
