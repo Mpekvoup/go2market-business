@@ -1,6 +1,9 @@
+import { telegramErrorCode } from './telegram-error.mjs';
 import { isValidContact, normalizeContact } from '../src/contact-validation.mjs';
 
-export function createContactHandler({ token, chatId, fetchImpl = fetch, now = Date.now }) {
+export function createContactHandler({ token, chatId, fetchImpl = fetch, now = Date.now, logError = code => console.error('[contact-delivery]', code) }) {
+  token = token?.trim();
+  chatId = chatId?.trim();
   const attempts = new Map();
   return async (req, res) => {
     const reply = (status, body) => {
@@ -61,19 +64,53 @@ export function createContactHandler({ token, chatId, fetchImpl = fetch, now = D
     };
     if (!Object.hasOwn(sites, data.source)) return reply(400, { error: 'Invalid source' });
     const text = ['New enquiry — go2market.qa', `Source: ${data.source}`, `Service: ${sites[data.source]}`, `Name: ${fields.name}`, `Contact: ${fields.contact}`, `Region: ${fields.region}`, '', fields.message].join('\n');
+    const safeLog = code => { try { Promise.resolve(logError(code)).catch(() => {}); } catch { /* isolate logging failures */ } };
+    const timeoutSignal = AbortSignal.timeout(10_000);
+    const classifyError = error => {
+      // TimeoutError is definitive timeout
+      if (error?.name === 'TimeoutError') return 'TG_TIMEOUT';
+      // AbortError: only TG_TIMEOUT if signal aborted due to timeout (reason is TimeoutError)
+      if (
+        error?.name === 'AbortError' &&
+        timeoutSignal.aborted &&
+        timeoutSignal.reason?.name === 'TimeoutError'
+      ) {
+        return 'TG_TIMEOUT';
+      }
+      return 'TG_NETWORK_OR_RESPONSE';
+    };
     try {
       const response = await fetchImpl(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ chat_id: chatId, text }),
-        signal: AbortSignal.timeout(10_000),
+        signal: timeoutSignal,
       });
-      const result = await response.json();
-      if (!response.ok || result.ok !== true) throw new Error('Delivery failed');
+      let result;
+      try {
+        result = await response.json();
+      } catch (jsonError) {
+        // Distinguish JSON syntax error from timeout/network during body read
+        if (jsonError instanceof SyntaxError) {
+          result = null; // Invalid JSON treated as rejection
+        } else {
+          // Timeout or network error during body read
+          const code = classifyError(jsonError);
+          safeLog(code);
+          return reply(502, { error: 'Could not deliver your enquiry. Please try again later.', code });
+        }
+      }
+      if (!response.ok || result?.ok !== true) {
+        const code = telegramErrorCode(response.status, result);
+        safeLog(code);
+        return reply(502, { error: 'Could not deliver your enquiry. Please try again later.', code });
+      }
       return reply(200, { ok: true });
-    } catch {
+    } catch (error) {
+      const code = classifyError(error);
+      safeLog(code);
       // Never expose upstream URLs, tokens, messages or Telegram responses.
-      return reply(502, { error: 'Could not deliver your enquiry. Please try again later.' });
+      return reply(502, { error: 'Could not deliver your enquiry. Please try again later.', code });
     }
   };
 }
