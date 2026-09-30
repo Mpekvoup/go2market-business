@@ -1,9 +1,10 @@
 import React, { useState, useEffect, lazy, Suspense } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import { Language } from './types';
 import { SiteProvider } from './src/config/SiteContext';
 import { detectSiteType, SiteType } from './src/config/site';
 import ScrollToTopOnNavigate from './components/ScrollToTopOnNavigate';
+import { initAttribution } from './src/lead-context';
 
 // Site-specific homepages
 import ConsultingHomePage from './src/sites/consulting/ConsultingHomePage';
@@ -23,6 +24,12 @@ interface AppInternalProps {
 
 const AppInternal: React.FC<AppInternalProps> = ({ siteType }) => {
   const [lang, setLang] = useState<Language>('ru');
+  const location = useLocation();
+
+  // Capture UTM on every navigation (SPA or initial load)
+  useEffect(() => {
+    initAttribution();
+  }, [location.search]);
 
   // Initialize Meta Pixel
   useEffect(() => {

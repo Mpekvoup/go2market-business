@@ -23,6 +23,32 @@ test('accepts explicit server success', async t => {
   t.mock.method(globalThis, 'fetch', async () => new Response('{"ok":true}'));
   assert.deepEqual(await postContact({}, 'en'), { ok: true });
 });
+test('sends context when provided', async t => {
+  let sentBody = null;
+  t.mock.method(globalThis, 'fetch', async (url, options) => {
+    sentBody = JSON.parse(options.body);
+    return new Response('{"ok":true}');
+  });
+  const context = {
+    sourcePage: '/test-page',
+    language: 'ru',
+    utmSource: 'test-source',
+  };
+  await postContact({ name: 'Test', contact: 'test@test.com' }, 'en', context);
+  assert.ok(sentBody.context);
+  assert.equal(sentBody.context.sourcePage, '/test-page');
+  assert.equal(sentBody.context.language, 'ru');
+  assert.equal(sentBody.context.utmSource, 'test-source');
+});
+test('omits context when not provided', async t => {
+  let sentBody = null;
+  t.mock.method(globalThis, 'fetch', async (url, options) => {
+    sentBody = JSON.parse(options.body);
+    return new Response('{"ok":true}');
+  });
+  await postContact({ name: 'Test', contact: 'test@test.com' }, 'en');
+  assert.equal(sentBody.context, undefined);
+});
 test('Vite mounts the API without a standalone server', async () => {
   let middleware;
   contactApiPlugin({}).configureServer({ middlewares: { use(handler) { middleware = handler; } } });

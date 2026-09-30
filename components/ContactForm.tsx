@@ -3,6 +3,7 @@ import React, { useState, useRef } from 'react';
 import { Language } from '../types';
 import { postContact } from '../src/contact-client';
 import { useSite } from '../src/config/SiteContext';
+import { collectLeadContext } from '../src/lead-context';
 
 interface ContactFormProps {
   lang: Language;
@@ -49,7 +50,11 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
   const source = siteConfig.domain;
 
   // Функция отправки в Telegram
-  const sendToTelegram = (data: typeof formData) => postContact( { ...data, source }, lang);
+  const sendToTelegram = (data: typeof formData) => {
+    // Collect context at submission time to get current pathname and language
+    const context = collectLeadContext(lang);
+    return postContact({ ...data, source }, lang, context);
+  };
 
   // Восстановление cooldown при загрузке
   React.useEffect(() => {

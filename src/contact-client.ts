@@ -1,13 +1,15 @@
 import type { Language } from '../types';
+import type { LeadContext } from './lead-context';
 
-export async function postContact(data: Record<string, string>, lang: Language) {
+export async function postContact(data: Record<string, string>, lang: Language, context?: LeadContext) {
   const message = (ru: string, en: string) => lang === 'ru' ? ru : en;
   let response: Response;
   try {
+    const payload = context ? { ...data, context } : data;
     response = await fetch('/api/contact', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+      body: JSON.stringify(payload),
       signal: AbortSignal.timeout(15_000),
     });
   } catch {

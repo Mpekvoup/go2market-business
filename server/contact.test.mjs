@@ -486,3 +486,218 @@ test('no leakage when network throws error with sensitive URL', async t => {
   // loggedArgs must be exactly [['TG_NETWORK_OR_RESPONSE']] - no additional arguments
   assert.deepEqual(loggedArgs, [['TG_NETWORK_OR_RESPONSE']]);
 });
+
+// --- Lead context tests ---
+
+test('old payload without context is still accepted', async t => {
+  const f = await fixture(t);
+  const r = await f.request(valid);
+  assert.equal(r.status, 200);
+  assert.deepEqual(await r.json(), { ok: true });
+  // Message should not contain Page/Language/UTM lines
+  assert.doesNotMatch(f.sent[0].body.text, /Page:/);
+  assert.doesNotMatch(f.sent[0].body.text, /Language:/);
+  assert.doesNotMatch(f.sent[0].body.text, /UTM:/);
+});
+
+test('valid context appears in Telegram message', async t => {
+  const f = await fixture(t);
+  const payload = {
+    ...valid,
+    context: {
+      sourcePage: '/services/consulting',
+      language: 'ru',
+      referrer: 'google.com',
+      utmSource: 'qa',
+      utmMedium: 'manual',
+      utmCampaign: 'tz10a',
+    },
+  };
+  const r = await f.request(payload);
+  assert.equal(r.status, 200);
+  const text = f.sent[0].body.text;
+  assert.match(text, /Page: \/services\/consulting/);
+  assert.match(text, /Language: ru/);
+  assert.match(text, /Referrer: google.com/);
+  assert.match(text, /UTM: src=qa \| med=manual \| cmp=tz10a/);
+});
+
+test('both Source/Service variants remain correct with context', async t => {
+  const f = await fixture(t);
+  // consulting
+  const r1 = await f.request({ ...valid, source: 'consulting.go2market.qa', context: { sourcePage: '/', language: 'en' } });
+  assert.equal(r1.status, 200);
+  assert.match(f.sent[0].body.text, /Source: consulting.go2market.qa/);
+  assert.match(f.sent[0].body.text, /Service: Business Consultation/);
+
+  // registration
+  const r2 = await f.request({ ...valid, source: 'registration.go2market.qa', context: { sourcePage: '/', language: 'ru' } });
+  assert.equal(r2.status, 200);
+  assert.match(f.sent[1].body.text, /Source: registration.go2market.qa/);
+  assert.match(f.sent[1].body.text, /Service: Company Registration/);
+});
+
+test('partial UTM formatted without empty values', async t => {
+  const f = await fixture(t);
+  const payload = {
+    ...valid,
+    context: {
+      sourcePage: '/',
+      language: 'en',
+      utmSource: 'facebook',
+      // utmMedium, utmCampaign, etc. not provided
+    },
+  };
+  const r = await f.request(payload);
+  assert.equal(r.status, 200);
+  const text = f.sent[0].body.text;
+  assert.match(text, /UTM: src=facebook/);
+  assert.doesNotMatch(text, /med=/);
+  assert.doesNotMatch(text, /cmp=/);
+  assert.doesNotMatch(text, /undefined/);
+  assert.doesNotMatch(text, /null/);
+});
+
+test('invalid context does not break valid enquiry', async t => {
+  const f = await fixture(t);
+  // Invalid context fields should be silently ignored
+  const payload = {
+    ...valid,
+    context: {
+      sourcePage: 'http://evil.com/path', // invalid - not local pathname
+      language: 'fr', // invalid
+      referrer: 'http://full-url.com/path', // invalid - not just hostname
+      utmSource: 'a'.repeat(300), // too long
+      unknownField: 'should be ignored',
+    },
+  };
+  const r = await f.request(payload);
+  assert.equal(r.status, 200);
+  const text = f.sent[0].body.text;
+  // None of the invalid context should appear
+  assert.doesNotMatch(text, /Page:/);
+  assert.doesNotMatch(text, /Language:/);
+  assert.doesNotMatch(text, /Referrer:/);
+  assert.doesNotMatch(text, /UTM:/);
+  assert.doesNotMatch(text, /evil/);
+  assert.doesNotMatch(text, /unknownField/);
+});
+
+test('unknown fields and fake Service via context are ignored', async t => {
+  const f = await fixture(t);
+  const payload = {
+    ...valid,
+    source: 'consulting.go2market.qa',
+    context: {
+      sourcePage: '/',
+      language: 'en',
+      service: 'Fake Service', // attempt to override - should be ignored
+      source: 'fake.source.com', // attempt to override - should be ignored
+      fakeField: 'fake value',
+    },
+  };
+  const r = await f.request(payload);
+  assert.equal(r.status, 200);
+  const text = f.sent[0].body.text;
+  // Service should remain derived from top-level source
+  assert.match(text, /Service: Business Consultation/);
+  assert.doesNotMatch(text, /Fake Service/);
+  assert.doesNotMatch(text, /fake\.source\.com/);
+  assert.doesNotMatch(text, /fakeField/);
+  assert.doesNotMatch(text, /fake value/);
+});
+
+test('newlines and overly long values are handled', async t => {
+  const f = await fixture(t);
+  // sourcePage with control chars is rejected by isValidSourcePage
+  let payload = {
+    ...valid,
+    context: {
+      sourcePage: '/path\nwith\nnewlines',
+      language: 'en',
+    },
+  };
+  let r = await f.request(payload);
+  assert.equal(r.status, 200);
+  assert.doesNotMatch(f.sent[0].body.text, /Page:/);
+
+  // UTM with control chars is rejected by isValidUtmField
+  payload = {
+    ...valid,
+    context: {
+      sourcePage: '/',
+      language: 'en',
+      utmSource: 'value\rwith\tcontrol\x00chars',
+    },
+  };
+  r = await f.request(payload);
+  assert.equal(r.status, 200);
+  assert.doesNotMatch(f.sent[1].body.text, /UTM:/);
+
+  // UTM longer than 200 chars is rejected
+  payload = {
+    ...valid,
+    context: {
+      sourcePage: '/',
+      language: 'en',
+      utmSource: 'a'.repeat(250),
+    },
+  };
+  r = await f.request(payload);
+  assert.equal(r.status, 200);
+  assert.doesNotMatch(f.sent[2].body.text, /UTM:/);
+
+  // Valid UTM up to 200 chars is accepted
+  payload = {
+    ...valid,
+    context: {
+      sourcePage: '/',
+      language: 'en',
+      utmSource: 'a'.repeat(200),
+    },
+  };
+  r = await f.request(payload);
+  assert.equal(r.status, 200);
+  assert.match(f.sent[3].body.text, /UTM: src=a{200}/);
+});
+
+test('sourcePage and referrer cannot contain query, hash, or credentials', async t => {
+  const f = await fixture(t);
+  // sourcePage with query
+  let r = await f.request({ ...valid, context: { sourcePage: '/path?query=1', language: 'en' } });
+  assert.equal(r.status, 200);
+  assert.doesNotMatch(f.sent[0].body.text, /Page:/);
+
+  // sourcePage with hash
+  r = await f.request({ ...valid, context: { sourcePage: '/path#hash', language: 'en' } });
+  assert.equal(r.status, 200);
+  assert.doesNotMatch(f.sent[1].body.text, /Page:/);
+
+  // referrer with path (should only be hostname)
+  r = await f.request({ ...valid, context: { sourcePage: '/', language: 'en', referrer: 'google.com/search' } });
+  assert.equal(r.status, 200);
+  assert.doesNotMatch(f.sent[2].body.text, /Referrer:/);
+
+  // referrer with credentials
+  r = await f.request({ ...valid, context: { sourcePage: '/', language: 'en', referrer: 'user:pass@google.com' } });
+  assert.equal(r.status, 200);
+  assert.doesNotMatch(f.sent[3].body.text, /Referrer:/);
+});
+
+test('context as array or primitive is ignored', async t => {
+  const f = await fixture(t);
+  // context as array
+  let r = await f.request({ ...valid, context: ['array'] });
+  assert.equal(r.status, 200);
+  assert.doesNotMatch(f.sent[0].body.text, /Page:/);
+
+  // context as string
+  r = await f.request({ ...valid, context: 'string' });
+  assert.equal(r.status, 200);
+  assert.doesNotMatch(f.sent[1].body.text, /Page:/);
+
+  // context as number
+  r = await f.request({ ...valid, context: 123 });
+  assert.equal(r.status, 200);
+  assert.doesNotMatch(f.sent[2].body.text, /Page:/);
+});
