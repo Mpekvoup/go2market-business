@@ -6,25 +6,12 @@ import {
   generateMetaTags,
   generateHomepageMetaTags,
 } from './metadata.mjs';
+import { SHARED_ROUTES } from './routes.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
 const distClient = path.resolve(root, 'dist');
 const distServer = path.resolve(root, 'dist-server');
-
-const SHARED_ROUTES = [
-  '/case-studies',
-  '/case-studies/caring-hands',
-  '/case-studies/sidr-technology',
-  '/case-studies/qalan',
-  '/services/b2b-lead-generation',
-  '/services/business-intelligence',
-  '/services/incorporation',
-  '/services/business-matchmaking',
-  '/services/fundraising',
-  '/privacy',
-  '/terms'
-];
 
 async function prerender() {
   const serverEntryPath = pathToFileURL(path.join(distServer, 'entry-server.js')).href;

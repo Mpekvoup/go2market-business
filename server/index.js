@@ -2,6 +2,7 @@ import express from 'express';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { createContactHandler } from './contact.mjs';
+import { createSitemapHandler, createRobotsHandler } from './sitemap.mjs';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -23,6 +24,11 @@ app.use('/api', (err, req, res, next) => {
   if (res.headersSent) return next(err);
   res.status(500).json({ error: 'Contact service unavailable' });
 });
+
+// Dynamic sitemap and robots.txt - must be before static middleware
+// to prevent serving old static files from dist/
+app.get('/sitemap.xml', createSitemapHandler());
+app.get('/robots.txt', createRobotsHandler());
 
 // Log all requests for debugging
 app.use((req, res, next) => {
