@@ -1,41 +1,16 @@
 import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import {
+  buildRouteMeta,
+  generateMetaTags,
+  generateHomepageMetaTags,
+} from './metadata.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
 const distClient = path.resolve(root, 'dist');
 const distServer = path.resolve(root, 'dist-server');
-
-// Site configurations
-const SITES = {
-  consulting: {
-    domain: 'consulting.go2market.qa',
-    title: {
-      en: 'Business Consulting in Qatar | G2M International',
-      ru: 'Бизнес-консультация в Катаре | G2M International'
-    },
-    description: {
-      en: 'G2M provides business consulting, market-entry guidance, and strategic support for companies and entrepreneurs operating in Qatar and GCC.',
-      ru: 'G2M предоставляет бизнес-консультации, поддержку выхода на рынок и стратегическую помощь для компаний и предпринимателей в Катаре и GCC.'
-    },
-    canonical: 'https://consulting.go2market.qa/',
-    ogImage: 'https://consulting.go2market.qa/images/hero/qatar.jpg'
-  },
-  registration: {
-    domain: 'registration.go2market.qa',
-    title: {
-      en: 'Company Registration in Qatar | G2M International',
-      ru: 'Регистрация компании в Катаре | G2M International'
-    },
-    description: {
-      en: 'G2M supports entrepreneurs and businesses with company registration and business setup in Qatar and GCC.',
-      ru: 'G2M поддерживает предпринимателей и бизнес в регистрации компаний и открытии бизнеса в Катаре и GCC.'
-    },
-    canonical: 'https://registration.go2market.qa/',
-    ogImage: 'https://registration.go2market.qa/images/hero/qatar.jpg'
-  }
-};
 
 const SHARED_ROUTES = [
   '/case-studies',
@@ -51,53 +26,32 @@ const SHARED_ROUTES = [
   '/terms'
 ];
 
-function generateMetaTags(siteConfig, lang = 'en', pathname = '/') {
-  // Build canonical URL
-  const canonicalBase = siteConfig.canonical.replace(/\/$/, '');
-  const canonicalPath = pathname === '/' ? '' : pathname;
-  const canonical = canonicalBase + canonicalPath;
-
-  return `
-    <title>${siteConfig.title[lang]}</title>
-    <meta name="description" content="${siteConfig.description[lang]}" />
-    <link rel="canonical" href="${canonical}" />
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:url" content="${canonical}" />
-    <meta property="og:title" content="${siteConfig.title[lang]}" />
-    <meta property="og:description" content="${siteConfig.description[lang]}" />
-    <meta property="og:image" content="${siteConfig.ogImage}" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Qatar Business District - G2M International Consulting" />
-    <meta property="og:site_name" content="G2M International Consulting" />
-    <meta property="og:locale" content="en_US" />
-    <meta property="og:locale:alternate" content="ru_RU" />
-
-    <!-- Twitter Card -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="${siteConfig.title[lang]}" />
-    <meta name="twitter:description" content="${siteConfig.description[lang]}" />
-    <meta name="twitter:image" content="${siteConfig.ogImage}" />
-  `.trim();
-}
-
 async function prerender() {
   const serverEntryPath = pathToFileURL(path.join(distServer, 'entry-server.js')).href;
-  const { render: renderPage } = await import(serverEntryPath);
+  const {
+    render: renderPage,
+    getServicesData,
+    getCaseStudiesData,
+  } = await import(serverEntryPath);
+
+  // Get data from SSR exports
+  const servicesData = getServicesData();
+  const caseStudiesData = getCaseStudiesData();
+
   const render = async (...args) => {
     const html = await renderPage(...args);
     if (html.includes('<!--$!-->') || !html.includes('<h1')) throw new Error('Incomplete pre-rendered page');
     return html;
   };
+
   // CRITICAL: Read from dist/index.html (Vite-built with CSS/JS links), not source template
   const baseTemplate = await fs.readFile(path.join(distClient, 'index.html'), 'utf-8');
 
+  let hasErrors = false;
+
   // Generate consulting template
   console.log('\n🔵 Generating consulting site...');
-  const consultingConfig = SITES.consulting;
-  const consultingMeta = generateMetaTags(consultingConfig, 'en', '/');
+  const consultingMeta = generateHomepageMetaTags('consulting', 'en');
   const consultingTemplate = baseTemplate.replace('<!-- SITE_META -->', consultingMeta);
 
   // Pre-render consulting homepage
@@ -116,8 +70,7 @@ async function prerender() {
 
   // Generate registration template
   console.log('\n🟢 Generating registration site...');
-  const registrationConfig = SITES.registration;
-  const registrationMeta = generateMetaTags(registrationConfig, 'en', '/');
+  const registrationMeta = generateHomepageMetaTags('registration', 'en');
   const registrationTemplate = baseTemplate.replace('<!-- SITE_META -->', registrationMeta);
 
   // Pre-render registration homepage
@@ -134,13 +87,21 @@ async function prerender() {
   );
   console.log('✓  index-registration.html');
 
-  // Pre-render shared routes (using consulting as default base, but with path-specific canonical)
+  // Pre-render shared routes with route-specific metadata
   console.log('\n📄 Generating shared routes...');
   for (const route of SHARED_ROUTES) {
     try {
-      // Use consulting for shared routes
-      const sharedMeta = generateMetaTags(consultingConfig, 'en', route);
-      const sharedTemplate = baseTemplate.replace('<!-- SITE_META -->', sharedMeta);
+      // Build route-specific metadata from data sources
+      const meta = buildRouteMeta(route, servicesData, caseStudiesData);
+      if (!meta) {
+        console.error(`✗  ${route}: No metadata defined for this route`);
+        process.exitCode = 1;
+        hasErrors = true;
+        continue;
+      }
+
+      const routeMeta = generateMetaTags(route, meta, 'en');
+      const sharedTemplate = baseTemplate.replace('<!-- SITE_META -->', routeMeta);
 
       const appHtml = await render(route, 'consulting');
       const html = sharedTemplate.replace(
@@ -154,12 +115,18 @@ async function prerender() {
       console.log(`✓  ${route}`);
     } catch (err) {
       process.exitCode = 1;
+      hasErrors = true;
       console.error(`✗  ${route}:`, err.message);
     }
   }
 
+  if (hasErrors) {
+    console.error('\n❌ Pre-rendering completed with errors.');
+  } else {
+    console.log('\n✅ Pre-rendering complete.\n');
+  }
+
   await fs.rm(distServer, { recursive: true, force: true });
-  console.log('\n✅ Pre-rendering complete.\n');
 }
 
 prerender();
