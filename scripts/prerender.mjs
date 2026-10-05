@@ -5,6 +5,7 @@ import {
   buildRouteMeta,
   generateMetaTags,
   generateHomepageMetaTags,
+  generate404MetaTags,
 } from './metadata.mjs';
 import { SHARED_ROUTES } from './routes.mjs';
 
@@ -109,10 +110,36 @@ async function prerender() {
 
   if (hasErrors) {
     console.error('\n❌ Pre-rendering completed with errors.');
-  } else {
-    console.log('\n✅ Pre-rendering complete.\n');
+    await fs.rm(distServer, { recursive: true, force: true });
+    return;
   }
 
+  // Generate 404 pages with noindex metadata (site-specific for Header/Footer)
+  console.log('\n🚫 Generating 404 pages...');
+  const notFoundMeta = generate404MetaTags('en');
+  let notFoundTemplate = baseTemplate.replace('<!-- SITE_META -->', notFoundMeta);
+  // Replace existing robots meta with noindex (template has index,follow by default)
+  notFoundTemplate = notFoundTemplate.replace(
+    /<meta name="robots" content="index, follow[^"]*" \/>/,
+    '<meta name="robots" content="noindex, nofollow" />'
+  );
+
+  for (const siteType of ['consulting', 'registration']) {
+    try {
+      const notFoundAppHtml = await render('/__internal_404_render__', siteType);
+      const notFoundHtml = notFoundTemplate.replace(
+        '<div id="root"></div>',
+        `<div id="root">${notFoundAppHtml}</div>`
+      );
+      await fs.writeFile(path.join(distClient, `404-${siteType}.html`), notFoundHtml, 'utf-8');
+      console.log(`✓  404-${siteType}.html (with noindex)`);
+    } catch (err) {
+      console.error(`✗  Failed to generate 404-${siteType}.html:`, err.message);
+      process.exitCode = 1;
+    }
+  }
+
+  console.log('\n✅ Pre-rendering complete.\n');
   await fs.rm(distServer, { recursive: true, force: true });
 }
 

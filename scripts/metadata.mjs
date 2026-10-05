@@ -217,3 +217,34 @@ export function generateHomepageMetaTags(siteKey, lang = 'en') {
     <meta name="twitter:image" content="${siteConfig.ogImage}" />
   `.trim();
 }
+
+/**
+ * Generate 404 page meta tags with noindex directive.
+ * Used for error pages that should not be indexed.
+ */
+export function generate404MetaTags(lang = 'en') {
+  const title = lang === 'ru'
+    ? `Страница не найдена | ${COMPANY_NAME}`
+    : `Page Not Found | ${COMPANY_NAME}`;
+  const description = lang === 'ru'
+    ? 'Запрошенная страница не существует или была перемещена.'
+    : 'The page you are looking for does not exist or has been moved.';
+
+  const safeTitle = escapeHtml(title);
+  const safeDescription = escapeHtml(description);
+
+  return `
+    <title>${safeTitle}</title>
+    <meta name="description" content="${safeDescription}" />
+
+    <!-- Open Graph (minimal for 404) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="${safeTitle}" />
+    <meta property="og:description" content="${safeDescription}" />
+
+    <!-- Twitter Card (minimal for 404) -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="${safeTitle}" />
+    <meta name="twitter:description" content="${safeDescription}" />
+  `.trim();
+}

@@ -40,36 +40,59 @@ app.use((req, res, next) => {
 app.use(express.static(distPath, {
   maxAge: '1y',
   immutable: true,
-  index: false // Don't auto-serve index.html
+  index: false, // Don't auto-serve index.html
+  redirect: false // Don't redirect directories (we handle this ourselves)
 }));
 
 /**
- * Determine which HTML file to serve based on hostname and query params
+ * Determine site type from hostname and query params
  * @param {string} hostname - Request hostname
  * @param {object} query - URL query parameters
- * @returns {string} - HTML filename ('index-consulting.html' or 'index-registration.html')
+ * @returns {string} - Site type ('consulting' or 'registration')
  */
-function getHtmlFile(hostname, query) {
+function getSiteType(hostname, query) {
   // Development: support ?site= query parameter
-  if (query.site === 'registration') {
-    return 'index-registration.html';
-  }
-  if (query.site === 'consulting') {
-    return 'index-consulting.html';
-  }
+  if (query.site === 'registration') return 'registration';
+  if (query.site === 'consulting') return 'consulting';
 
   // Production: use hostname
-  if (hostname.startsWith('registration.')) {
-    return 'index-registration.html';
-  }
+  if (hostname.startsWith('registration.')) return 'registration';
 
   // Default to consulting
-  return 'index-consulting.html';
+  return 'consulting';
+}
+
+/**
+ * Get HTML file name for homepage based on site type
+ * @param {string} siteType - Site type
+ * @returns {string} - HTML filename
+ */
+function getHtmlFile(siteType) {
+  return siteType === 'registration' ? 'index-registration.html' : 'index-consulting.html';
+}
+
+/**
+ * Validate pathname for security issues.
+ * Returns false if path contains suspicious patterns.
+ */
+function isPathSafe(pathname) {
+  // Reject paths with directory traversal or null bytes
+  return !pathname.includes('..') && !pathname.includes('\0');
+}
+
+/**
+ * Normalize pathname: remove trailing slash for prerender lookup.
+ */
+function normalizeForPrerender(pathname) {
+  if (pathname !== '/' && pathname.endsWith('/')) {
+    return pathname.slice(0, -1);
+  }
+  return pathname;
 }
 
 /**
  * Check if a pre-rendered HTML file exists for this path
- * @param {string} pathname - Request pathname
+ * @param {string} pathname - Request pathname (must be normalized, no trailing slash)
  * @returns {string|null} - Path to pre-rendered HTML or null
  */
 function getPrerenderPath(pathname) {
@@ -87,30 +110,62 @@ function getPrerenderPath(pathname) {
 app.get('*', async (req, res) => {
   const hostname = req.hostname;
   const pathname = req.path;
+  const { default: fs } = await import('fs/promises');
 
   try {
-    // Check for pre-rendered routes first (shared routes like /privacy, /terms, /case-studies)
-    if (pathname !== '/') {
-      const prerenderPath = getPrerenderPath(pathname);
+    // Security check
+    if (!isPathSafe(pathname)) {
+      return res.status(400).send('Bad Request');
+    }
 
+    const siteType = getSiteType(hostname, req.query);
+
+    // Homepage: serve site-specific HTML
+    if (pathname === '/') {
+      const htmlFile = getHtmlFile(siteType);
+      return res.sendFile(path.join(distPath, htmlFile));
+    }
+
+    // Check for pre-rendered routes (shared routes like /privacy, /terms, /case-studies)
+    // Normalize trailing slash for consistent prerender lookup
+    const normalizedPath = normalizeForPrerender(pathname);
+    const prerenderPath = getPrerenderPath(normalizedPath);
+    try {
+      await fs.access(prerenderPath);
+      return res.sendFile(prerenderPath);
+    } catch {
+      // Pre-rendered file doesn't exist
+    }
+
+    // Site-specific 404 file
+    const notFoundPath = path.join(distPath, `404-${siteType}.html`);
+
+    // Check if this is a static asset request (has file extension)
+    const hasExtension = /\.[a-zA-Z0-9]+$/.test(pathname);
+    if (hasExtension) {
+      // Static asset not found - Express static middleware already tried
       try {
-        // Try to serve pre-rendered HTML
-        const { default: fs } = await import('fs/promises');
-        await fs.access(prerenderPath);
-        return res.sendFile(prerenderPath);
-      } catch (err) {
-        // Pre-rendered file doesn't exist, fall through to SPA
+        await fs.access(notFoundPath);
+        res.set('Cache-Control', 'no-store');
+        return res.status(404).sendFile(notFoundPath);
+      } catch {
+        res.set('Cache-Control', 'no-store');
+        return res.status(404).send('Not Found');
       }
     }
 
-    // Homepage or SPA fallback: serve site-specific HTML
-    const htmlFile = getHtmlFile(hostname, req.query);
-    res.sendFile(path.join(distPath, htmlFile));
+    // Unknown route without extension - serve 404 with 404 status
+    try {
+      await fs.access(notFoundPath);
+      res.set('Cache-Control', 'no-store');
+      return res.status(404).sendFile(notFoundPath);
+    } catch {
+      res.set('Cache-Control', 'no-store');
+      return res.status(404).send('Not Found');
+    }
   } catch (err) {
     console.error('Error serving file:', err);
-
-    // Fallback to consulting site on error
-    res.sendFile(path.join(distPath, 'index-consulting.html'));
+    res.status(500).send('Internal Server Error');
   }
 });
 
