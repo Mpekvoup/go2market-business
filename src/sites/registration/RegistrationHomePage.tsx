@@ -25,12 +25,14 @@ const RegistrationHomePage: React.FC<RegistrationHomePageProps> = ({ lang, setLa
         <section className="relative min-h-[520px] md:min-h-[560px] lg:min-h-[600px] flex items-center overflow-hidden pt-20 md:pt-24 lg:pt-28">
           {/* Background image */}
           <picture className="absolute inset-0 w-full h-full">
+            <source type="image/avif" srcSet="/images/hero/hero-main-1264w.avif" />
+            <source type="image/webp" srcSet="/images/hero/hero-main-1264w.webp" />
             <img
               src="/images/hero/hero-main.jpeg"
               alt=""
               className="w-full h-full object-cover object-[75%_center] md:object-[70%_center] lg:object-center"
-              width="1920"
-              height="1080"
+              width="1264"
+              height="842"
               fetchPriority="high"
               decoding="async"
             />
