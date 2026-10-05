@@ -179,15 +179,15 @@ const Services: React.FC<ServicesProps> = ({ lang }) => {
             </div>
 
             {/* Trust stats */}
-            <div className="grid grid-cols-3 gap-4 py-7 my-8 border-y border-slate-100">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 py-7 my-8 border-y border-slate-100">
               {[
-                { value: '20+', label: { en: 'Companies helped', ru: 'Компаний\u00A0сопроводили' } },
-                { value: 'QFC', label: { en: 'Licensed in Qatar', ru: 'Лицензия\u00A0в\u00A0Катаре' } },
-                { value: '1:1', label: { en: 'Direct, no hand-offs', ru: 'Без\u00A0передачи\u00A0менеджеру' } },
+                { value: '20+', label: { en: 'Companies helped', ru: 'Компаний сопроводили' } },
+                { value: 'QFC', label: { en: 'Licensed in Qatar', ru: 'Лицензия в Катаре' } },
+                { value: '1:1', label: { en: 'Direct, no hand-offs', ru: 'Без передачи менеджеру' } },
               ].map((stat, i) => (
                 <div key={i} className="text-center">
                   <p className="text-2xl font-black text-qatar-maroon leading-none">{stat.value}</p>
-                  <p className="text-[10px] text-slate-400 font-semibold uppercase tracking-wide mt-2 leading-tight">
+                  <p className="text-xs text-slate-400 font-semibold uppercase tracking-wide mt-2">
                     {stat.label[lang]}
                   </p>
                 </div>
