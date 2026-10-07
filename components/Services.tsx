@@ -187,7 +187,7 @@ const Services: React.FC<ServicesProps> = ({ lang }) => {
               ].map((stat, i) => (
                 <div key={i} className="text-center">
                   <p className="text-2xl font-black text-qatar-maroon leading-none">{stat.value}</p>
-                  <p className="text-xs text-slate-400 font-semibold uppercase tracking-wide mt-2">
+                  <p className="text-xs text-slate-500 dark:text-slate-400 font-semibold uppercase tracking-wide mt-2">
                     {stat.label[lang]}
                   </p>
                 </div>
@@ -309,7 +309,7 @@ const Services: React.FC<ServicesProps> = ({ lang }) => {
                   ].map((stat, i) => (
                     <div key={i} className="text-center">
                       <p className="text-3xl font-black text-qatar-maroon leading-none mb-2">{stat.value}</p>
-                      <p className="text-[10px] text-slate-400 font-bold uppercase tracking-wide leading-tight">
+                      <p className="text-[10px] text-slate-500 dark:text-slate-400 font-bold uppercase tracking-wide leading-tight">
                         {stat.label[lang]}
                       </p>
                     </div>

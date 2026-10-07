@@ -235,7 +235,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
       <div className="space-y-8 animate-in fade-in slide-in-from-right-4 duration-300">
         <div className="space-y-4">
           <div className="flex items-center gap-3">
-            <span className="text-sm font-black text-qatar-maroon/60 dark:text-rose-400/60 uppercase tracking-widest">
+            <span className="text-sm font-black text-qatar-maroon dark:text-rose-400 uppercase tracking-widest">
               {lang === 'en' ? 'Question' : 'Вопрос'} {currentStep + 1}/{steps.length}
             </span>
           </div>
@@ -483,18 +483,18 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
                   </div>
 
                   {cooldown > 0 && (
-                    <p className="text-center text-xs text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest">
+                    <p className="text-center text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest">
                       {lang === 'en' ? `Please wait ${cooldown}s before sending another request.` : `Подождите ${cooldown}с перед повторной отправкой.`}
                     </p>
                   )}
 
-                  <p className="text-center text-xs text-slate-400 dark:text-slate-500 font-bold uppercase tracking-widest">
+                  <p className="text-center text-xs text-slate-500 dark:text-slate-400 font-bold uppercase tracking-widest">
                     {lang === 'en' ? 'Your data stays private' : 'Ваши данные остаются приватными'}
                   </p>
 
                   {/* Hint for Enter key */}
                   {currentStep < steps.length - 1 && steps[currentStep].type !== 'select' && (
-                    <p className="text-center text-xs text-slate-400 dark:text-slate-500 font-medium">
+                    <p className="text-center text-xs text-slate-500 dark:text-slate-400 font-medium">
                       {lang === 'en' ? 'Press Enter ↵ to continue' : 'Нажмите Enter ↵ чтобы продолжить'}
                     </p>
                   )}

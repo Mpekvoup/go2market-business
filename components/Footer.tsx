@@ -115,7 +115,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
 
           {/* Links */}
           <div className="md:col-span-1">
-            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-slate-500 mb-6">
+            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 mb-6">
               {lang === 'en' ? 'Company' : 'Компания'}
             </h4>
             <ul className="space-y-3 text-slate-400 font-medium text-sm">
@@ -128,7 +128,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
 
           {/* Specialised Services */}
           <div className="md:col-span-1">
-            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-slate-500 mb-6">
+            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 mb-6">
               {lang === 'en' ? 'Specialised Services' : 'Специализированные услуги'}
             </h4>
             <ul className="space-y-3 text-slate-400 font-medium text-sm">
@@ -144,7 +144,7 @@ const Footer: React.FC<FooterProps> = ({ lang }) => {
 
           {/* Contact */}
           <div className="md:col-span-1">
-            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-slate-500 mb-6">
+            <h4 className="text-xs font-black uppercase tracking-[0.3em] text-slate-400 mb-6">
               {lang === 'en' ? 'Contact' : 'Контакты'}
             </h4>
             <ul className="space-y-4 text-sm">
