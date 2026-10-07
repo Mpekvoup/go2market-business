@@ -506,9 +506,7 @@ const Services: React.FC<ServicesProps> = ({ lang }) => {
                   }`}>
                     {ICONS[idx]}
                   </div>
-                  <span className={`text-3xl font-black tabular-nums leading-none transition-colors duration-300 ${
-                    activeIdx === idx ? 'text-qatar-maroon/30' : 'text-slate-100 group-hover:text-qatar-maroon/20'
-                  }`}>
+                  <span className="text-3xl font-black tabular-nums leading-none text-slate-500 dark:text-slate-400">
                     {String(displayNumber).padStart(2, '0')}
                   </span>
                 </div>
