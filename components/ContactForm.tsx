@@ -170,20 +170,23 @@ const ContactForm: React.FC<ContactFormProps> = ({ lang }) => {
 
       setStatus('success');
 
-      // Google Analytics
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'generate_lead', { event_category: 'contact', event_label: 'form_submit' });
-      }
+      // Analytics events (isolated - errors must not affect form success state)
+      try {
+        if (typeof window.gtag === 'function') {
+          window.gtag('event', 'generate_lead', { event_category: 'contact', event_label: 'form_submit' });
+        }
+      } catch { /* analytics error isolated */ }
 
-      // Facebook Pixel Lead event
-      if (typeof window.fbq === 'function') {
-        window.fbq('track', 'Lead', {
-          content_name: 'Contact Form',
-          content_category: 'Contact',
-          value: 100,
-          currency: 'USD'
-        });
-      }
+      try {
+        if (typeof window.fbq === 'function') {
+          window.fbq('track', 'Lead', {
+            content_name: 'Contact Form',
+            content_category: 'Contact',
+            value: 100,
+            currency: 'USD'
+          });
+        }
+      } catch { /* analytics error isolated */ }
 
       // Добавляем параметр success=true в URL для отслеживания конверсий
       const url = new URL(window.location.href);
