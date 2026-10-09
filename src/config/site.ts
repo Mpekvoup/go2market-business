@@ -38,8 +38,8 @@ export const REGISTRATION_CONFIG: SiteConfig = {
     ru: 'Регистрация компании в Катаре | G2M International'
   },
   description: {
-    en: 'G2M supports entrepreneurs and businesses with company registration and business setup in Qatar and GCC.',
-    ru: 'G2M поддерживает предпринимателей и бизнес в регистрации компаний и открытии бизнеса в Катаре и GCC.'
+    en: 'Company formation in Qatar with G2M: jurisdiction selection, registration and bank account opening support. Your first company formation consultation is free.',
+    ru: 'Открытие компании в Катаре с G2M: выбор юрисдикции, регистрация и сопровождение открытия банковского счёта. Первая консультация по открытию компании бесплатная.'
   },
   canonical: 'https://registration.go2market.qa/',
   ogImage: 'https://registration.go2market.qa/images/hero/qatar.jpg'

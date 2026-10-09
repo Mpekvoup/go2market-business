@@ -59,7 +59,7 @@ const Header: React.FC<HeaderProps> = ({ lang, setLang }) => {
   // Site-specific CTA
   const ctaText = siteType === 'consulting'
     ? { en: 'Book Consultation', ru: 'Консультация' }
-    : { en: 'Start Registration', ru: 'Начать регистрацию' };
+    : { en: 'Discuss Your Company Setup', ru: 'Обсудить открытие компании' };
 
   useEffect(() => {
     const handleScroll = () => {

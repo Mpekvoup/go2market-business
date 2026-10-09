@@ -9,15 +9,15 @@ export const registrationContent = {
       ru: 'Откройте компанию в Катаре с G2M'
     },
     subheadline: {
-      en: 'G2M supports entrepreneurs and businesses through company setup, registration coordination, documentation support, and business setup guidance in Qatar and GCC.',
-      ru: 'G2M поддерживает предпринимателей и бизнес в открытии компании, координации регистрации, документационной поддержке и помощи в создании бизнеса в Катаре и GCC.'
+      en: 'We support registration in QFC, free zones, and mainland Qatar — from consultation through licensing and corporate bank account opening.',
+      ru: 'Сопровождаем регистрацию в QFC, свободных зонах и на материке — от консультации до лицензии и банковского счёта.'
     },
     primaryCTA: {
-      en: 'Start Your Company Registration',
-      ru: 'Начать регистрацию компании'
+      en: 'Discuss Your Company Setup',
+      ru: 'Обсудить открытие компании'
     },
     secondaryCTA: {
-      en: 'See How It Works',
+      en: 'How It Works',
       ru: 'Как это работает'
     }
   },
@@ -28,74 +28,52 @@ export const registrationContent = {
       ru: 'Чем помогает G2M'
     },
     subtitle: {
-      en: 'Practical support and guidance throughout your company registration and business setup journey',
-      ru: 'Практическая поддержка и руководство на всех этапах регистрации компании и открытия бизнеса'
+      en: 'End-to-end company formation support in Qatar',
+      ru: 'Полное сопровождение открытия компании в Катаре'
     },
     services: [
       {
         icon: 'file-text',
         title: {
-          en: 'Company Structure Guidance',
-          ru: 'Выбор структуры компании'
+          en: 'Jurisdiction Selection',
+          ru: 'Выбор юрисдикции'
         },
         description: {
-          en: 'Understand different company structures available in Qatar and select the most suitable option for your business activity.',
-          ru: 'Разберитесь в различных структурах компаний, доступных в Катаре, и выберите наиболее подходящий вариант для вашей деятельности.'
-        }
-      },
-      {
-        icon: 'clipboard-check',
-        title: {
-          en: 'Registration Coordination',
-          ru: 'Координация регистрации'
-        },
-        description: {
-          en: 'We coordinate the registration process, liaising with relevant authorities and ensuring all steps are completed properly.',
-          ru: 'Координируем процесс регистрации, взаимодействуем с соответствующими органами и обеспечиваем правильное выполнение всех этапов.'
-        }
-      },
-      {
-        icon: 'award',
-        title: {
-          en: 'Licensing Support',
-          ru: 'Поддержка лицензирования'
-        },
-        description: {
-          en: 'Guidance on obtaining the necessary business licenses and permits for your specific business activity in Qatar.',
-          ru: 'Помощь в получении необходимых бизнес-лицензий и разрешений для вашей конкретной деятельности в Катаре.'
+          en: 'We recommend the right structure for your business: QFC, Qatar Free Zones, Qatar Media City, QSTP, or Mainland.',
+          ru: 'Подбираем структуру под ваш бизнес: QFC, Qatar Free Zones, Qatar Media City, QSTP или Mainland.'
         }
       },
       {
         icon: 'folder',
         title: {
-          en: 'Documentation Support',
-          ru: 'Документационная поддержка'
+          en: 'Document Preparation',
+          ru: 'Подготовка документов'
         },
         description: {
-          en: 'Assistance with preparing, reviewing, and submitting required documentation for company registration.',
-          ru: 'Помощь в подготовке, проверке и подаче необходимой документации для регистрации компании.'
+          en: 'We compile the application package for the regulator.',
+          ru: 'Формируем пакет документов для подачи в регулятор.'
         }
       },
       {
-        icon: 'map-pin',
+        icon: 'clipboard-check',
         title: {
-          en: 'Business Setup Guidance',
-          ru: 'Поддержка открытия бизнеса'
+          en: 'Company Registration',
+          ru: 'Регистрация компании'
         },
         description: {
-          en: 'Practical guidance on office requirements, initial setup steps, and operational considerations for Qatar business.',
-          ru: 'Практические рекомендации по офисным требованиям, первоначальным этапам создания и операционным аспектам бизнеса в Катаре.'
+          en: 'We file your application and manage the process until licensing.',
+          ru: 'Подаём заявку и ведём процесс до получения лицензии.'
         }
       },
       {
         icon: 'credit-card',
         title: {
-          en: 'Bank Account Preparation Support',
-          ru: 'Поддержка при открытии счета'
+          en: 'Bank Account Opening',
+          ru: 'Открытие банковского счёта'
         },
         description: {
-          en: 'Support with corporate bank account requirements and preparation of necessary documentation.',
-          ru: 'Поддержка с требованиями для корпоративного банковского счета и подготовкой необходимой документации.'
+          en: 'We help prepare documents and support you through the bank\'s account opening process.',
+          ru: 'Помогаем подготовить документы и сопровождаем открытие счёта в банке.'
         }
       }
     ]
@@ -103,12 +81,12 @@ export const registrationContent = {
 
   whoItsFor: {
     title: {
-      en: 'Who Can Register a Company',
-      ru: 'Кто может зарегистрировать компанию'
+      en: 'Who It\'s For',
+      ru: 'Кому подходит'
     },
     subtitle: {
-      en: 'Qatar welcomes diverse business owners and investors',
-      ru: 'Катар приветствует разных владельцев бизнеса и инвесторов'
+      en: 'We work with entrepreneurs and companies from any country',
+      ru: 'Работаем с предпринимателями и компаниями из любых стран'
     },
     audience: [
       {
@@ -117,18 +95,18 @@ export const registrationContent = {
           ru: 'Предприниматели'
         },
         description: {
-          en: 'Individuals planning to start a business in Qatar, whether as a sole establishment or in partnership.',
-          ru: 'Частные лица, планирующие начать бизнес в Катаре, как индивидуальное предприятие или в партнерстве.'
+          en: 'Launching a business in Qatar from scratch.',
+          ru: 'Запуск бизнеса в Катаре с нуля.'
         }
       },
       {
         title: {
-          en: 'Foreign Investors',
-          ru: 'Иностранные инвесторы'
+          en: 'Startups',
+          ru: 'Стартапы'
         },
         description: {
-          en: 'International investors looking to establish commercial presence in Qatar and GCC markets.',
-          ru: 'Международные инвесторы, желающие создать коммерческое присутствие в Катаре и на рынках GCC.'
+          en: 'Tech and fintech projects entering the Qatar market.',
+          ru: 'Технологические и финтех-проекты, выходящие на рынок Катара.'
         }
       },
       {
@@ -137,8 +115,8 @@ export const registrationContent = {
           ru: 'Малый и средний бизнес'
         },
         description: {
-          en: 'Small and medium enterprises expanding their operations to Qatar or establishing a local entity.',
-          ru: 'Малые и средние предприятия, расширяющие свои операции в Катар или создающие местное юридическое лицо.'
+          en: 'Establishing commercial presence in Qatar.',
+          ru: 'Создание коммерческого присутствия в Катаре.'
         }
       },
       {
@@ -147,8 +125,8 @@ export const registrationContent = {
           ru: 'Международные компании'
         },
         description: {
-          en: 'Companies entering Qatar market through branch offices, subsidiaries, or free zone entities.',
-          ru: 'Компании, выходящие на рынок Катара через филиалы, дочерние компании или организации в свободных зонах.'
+          en: 'Setting up a company in Qatar.',
+          ru: 'Открытие компании в Катаре.'
         }
       }
     ]
@@ -156,67 +134,67 @@ export const registrationContent = {
 
   process: {
     title: {
-      en: 'How the Registration Process Works',
-      ru: 'Как проходит процесс регистрации'
+      en: 'How It Works',
+      ru: 'Как проходит процесс'
     },
     subtitle: {
-      en: 'A structured approach to establishing your company in Qatar',
-      ru: 'Структурированный подход к созданию вашей компании в Катаре'
+      en: 'From first call to bank account',
+      ru: 'От первого звонка до открытия счёта'
     },
     steps: [
       {
         number: '01',
         title: {
-          en: 'Initial Consultation',
-          ru: 'Первичная консультация'
+          en: 'First Call',
+          ru: 'Первый звонок'
         },
         description: {
-          en: 'We discuss your business plans, understand your requirements, and explain the registration options available.',
-          ru: 'Обсуждаем ваши бизнес-планы, понимаем требования и объясняем доступные варианты регистрации.'
+          en: 'We discuss your plans and answer questions.',
+          ru: 'Обсуждаем ваши планы и отвечаем на вопросы.'
         }
       },
       {
         number: '02',
         title: {
-          en: 'Business Activity Review',
-          ru: 'Анализ деятельности'
+          en: 'Structure Selection',
+          ru: 'Выбор структуры'
         },
         description: {
-          en: 'Review your planned business activity to determine the appropriate company structure and licensing requirements.',
-          ru: 'Анализируем планируемую деятельность для определения подходящей структуры компании и требований к лицензированию.'
+          en: 'We recommend a jurisdiction for your business activity.',
+          ru: 'Рекомендуем юрисдикцию под ваш вид деятельности.'
         }
       },
       {
         number: '03',
         title: {
-          en: 'Structure Selection Guidance',
-          ru: 'Выбор структуры'
+          en: 'Document Collection',
+          ru: 'Сбор документов'
         },
         description: {
-          en: 'Guide you in selecting the most suitable company structure based on your business needs and ownership preferences.',
-          ru: 'Помогаем выбрать наиболее подходящую структуру компании на основе ваших бизнес-потребностей и предпочтений по владению.'
+          en: 'You provide founder documents and business information, we prepare the package.',
+          ru: 'Вы предоставляете документы учредителей и информацию о бизнесе, мы готовим пакет.'
         }
       },
       {
         number: '04',
         title: {
-          en: 'Documentation & Registration Support',
-          ru: 'Документация и регистрация'
+          en: 'Registration',
+          ru: 'Регистрация'
         },
         description: {
-          en: 'Support with documentation preparation, registration coordination, and liaising with relevant authorities.',
-          ru: 'Поддержка в подготовке документации, координации регистрации и взаимодействии с соответствующими органами.'
+          en: 'We file and manage the process until licensing.',
+          ru: 'Подаём заявку и ведём процесс до лицензии.'
         }
       },
       {
         number: '05',
         title: {
-          en: 'Post-Registration Setup Support',
-          ru: 'Поддержка после регистрации'
+          en: 'Bank Account',
+          ru: 'Банковский счёт'
         },
         description: {
-          en: 'Guidance on post-registration steps including bank account setup, visa processing support, and operational setup.',
-          ru: 'Поддержка на этапах после регистрации, включая открытие банковского счета, помощь с визами и операционной настройкой.'
+          en: 'We help open your corporate account.',
+          ru: 'Помогаем открыть корпоративный счёт.'
         }
       }
     ]
@@ -224,61 +202,49 @@ export const registrationContent = {
 
   whyG2M: {
     title: {
-      en: 'Why Register with G2M',
-      ru: 'Почему регистрация с G2M'
+      en: 'Why G2M',
+      ru: 'Почему G2M'
     },
     reasons: [
       {
         title: {
-          en: 'Local Market Knowledge',
-          ru: 'Знание местного рынка'
+          en: 'Market Knowledge',
+          ru: 'Знание рынка'
         },
         description: {
-          en: 'Understanding of Qatar company registration procedures, requirements, and local business practices.',
-          ru: 'Понимание процедур регистрации компаний в Катаре, требований и местной бизнес-практики.'
+          en: 'We work in Qatar and understand each jurisdiction.',
+          ru: 'Работаем в Катаре и понимаем особенности каждой юрисдикции.'
         }
       },
       {
         title: {
-          en: 'Clear Guidance',
-          ru: 'Четкое руководство'
+          en: 'End-to-End Support',
+          ru: 'Сопровождение под ключ'
         },
         description: {
-          en: 'Transparent explanation of registration steps, requirements, and what to expect throughout the process.',
-          ru: 'Прозрачное объяснение этапов регистрации, требований и того, чего ожидать в процессе.'
+          en: 'We manage the process from consultation to bank account.',
+          ru: 'Ведём процесс от консультации до банковского счёта.'
         }
       },
       {
         title: {
-          en: 'Practical Coordination',
-          ru: 'Практическая координация'
+          en: 'Clear Plan of Work',
+          ru: 'Понятный план работы'
         },
         description: {
-          en: 'We handle coordination with authorities and ensure documentation is properly prepared and submitted.',
-          ru: 'Мы управляем координацией с органами власти и обеспечиваем правильную подготовку и подачу документации.'
-        }
-      },
-      {
-        title: {
-          en: 'Personalized Setup Support',
-          ru: 'Персонализированная поддержка'
-        },
-        description: {
-          en: 'Tailored guidance based on your specific business activity, structure preferences, and requirements.',
-          ru: 'Индивидуальная поддержка на основе вашей конкретной деятельности, предпочтений по структуре и требований.'
-        }
-      },
-      {
-        title: {
-          en: 'Support Beyond Registration',
-          ru: 'Поддержка после регистрации'
-        },
-        description: {
-          en: 'Continued support with business development, operational guidance, and growth consultation after registration.',
-          ru: 'Постоянная поддержка в развитии бизнеса, операционной помощи и консультациях по росту после регистрации.'
+          en: 'At the first consultation, we recommend a jurisdiction and prepare a proposal.',
+          ru: 'На первой консультации подберём юрисдикцию и подготовим коммерческое предложение.'
         }
       }
     ]
+  },
+
+  trustedBy: {
+    title: {
+      en: 'Trusted By',
+      ru: 'Нам доверяют'
+    },
+    companies: 'Transforma Travel Group • Wings AI • Qalan Group'
   },
 
   faq: {
@@ -289,72 +255,42 @@ export const registrationContent = {
     items: [
       {
         question: {
-          en: 'How can I register a company in Qatar?',
-          ru: 'Как я могу зарегистрировать компанию в Катаре?'
+          en: 'Can foreigners register a company in Qatar?',
+          ru: 'Можно ли открыть компанию в Катаре иностранцу?'
         },
         answer: {
-          en: 'Company registration involves selecting a company structure, preparing required documentation, obtaining necessary approvals, and completing registration with relevant authorities. The specific steps depend on your business activity and chosen structure. G2M provides guidance and coordination throughout this process.',
-          ru: 'Регистрация компании включает выбор структуры компании, подготовку необходимой документации, получение требуемых одобрений и завершение регистрации в соответствующих органах. Конкретные этапы зависят от вашей деятельности и выбранной структуры. G2M предоставляет руководство и координацию на всех этапах.'
+          en: 'Yes, foreign entrepreneurs and companies can register a business in Qatar.',
+          ru: 'Да, иностранные предприниматели и компании могут регистрировать бизнес в Катаре.'
         }
       },
       {
         question: {
-          en: 'Can foreign investors establish companies in Qatar?',
-          ru: 'Могут ли иностранные инвесторы создавать компании в Катаре?'
+          en: 'Which jurisdiction should I choose?',
+          ru: 'Какую юрисдикцию выбрать?'
         },
         answer: {
-          en: 'Yes, foreign investors can establish companies in Qatar. Options include free zone entities with full foreign ownership, mainland companies (where ownership requirements may vary by activity), and branch offices. The suitable structure depends on your business activity and objectives.',
-          ru: 'Да, иностранные инвесторы могут создавать компании в Катаре. Варианты включают организации в свободных зонах с полным иностранным владением, компании на материке (где требования к владению могут различаться по виду деятельности) и филиалы. Подходящая структура зависит от вашей деятельности и целей.'
+          en: 'It depends on your business activity. We help you choose during consultation.',
+          ru: 'Зависит от вашей деятельности. На консультации подберём оптимальный вариант.'
         }
       },
       {
         question: {
-          en: 'What business structure should I choose?',
-          ru: 'Какую бизнес-структуру мне выбрать?'
+          en: 'What documents are required?',
+          ru: 'Какие документы нужны?'
         },
         answer: {
-          en: 'The appropriate structure depends on your business activity, ownership preferences, and operational requirements. Common options include Limited Liability Companies (LLC), free zone entities, branch offices, and sole establishments. We guide you in selecting the most suitable structure for your situation.',
-          ru: 'Подходящая структура зависит от вашей деятельности, предпочтений по владению и операционных требований. Распространенные варианты включают общества с ограниченной ответственностью (ООО), организации в свободных зонах, филиалы и индивидуальные предприятия. Мы помогаем выбрать наиболее подходящую структуру для вашей ситуации.'
+          en: 'Founder documents and business information. The exact list depends on the jurisdiction.',
+          ru: 'Документы учредителей и информация о бизнесе. Конкретный список зависит от юрисдикции.'
         }
       },
       {
         question: {
-          en: 'What documents may be required?',
-          ru: 'Какие документы могут потребоваться?'
+          en: 'What happens after I submit a request?',
+          ru: 'Что происходит после заявки?'
         },
         answer: {
-          en: 'Required documentation varies depending on company structure and business activity, but typically includes passport copies, proof of address, business plan or activity description, and potentially other documents. Some documents may require notarization or attestation. We guide you through specific requirements for your case.',
-          ru: 'Необходимая документация различается в зависимости от структуры компании и деятельности, но обычно включает копии паспортов, подтверждение адреса, бизнес-план или описание деятельности и потенциально другие документы. Некоторые документы могут требовать нотариального заверения или легализации. Мы помогаем с конкретными требованиями для вашего случая.'
-        }
-      },
-      {
-        question: {
-          en: 'How long can the process take?',
-          ru: 'Сколько может занять процесс?'
-        },
-        answer: {
-          en: 'The timeline varies depending on company structure, business activity, documentation completeness, and processing by relevant authorities. Some registrations may be completed relatively quickly, while others may take longer. We provide realistic guidance based on your specific situation rather than guaranteed timelines.',
-          ru: 'Сроки различаются в зависимости от структуры компании, деятельности, полноты документации и обработки соответствующими органами. Некоторые регистрации могут быть завершены относительно быстро, в то время как другие могут занять больше времени. Мы предоставляем реалистичное руководство на основе вашей конкретной ситуации, а не гарантированных сроков.'
-        }
-      },
-      {
-        question: {
-          en: 'Can G2M help after registration?',
-          ru: 'Может ли G2M помочь после регистрации?'
-        },
-        answer: {
-          en: 'Yes, we provide continued support after registration including business development guidance, operational consultation, and assistance with growth planning. Many clients work with us beyond initial setup.',
-          ru: 'Да, мы предоставляем постоянную поддержку после регистрации, включая помощь в развитии бизнеса, операционные консультации и помощь в планировании роста. Многие клиенты работают с нами после первоначального создания.'
-        }
-      },
-      {
-        question: {
-          en: 'Can G2M assist with visas or business bank account preparation?',
-          ru: 'Может ли G2M помочь с визами или подготовкой бизнес-счета?'
-        },
-        answer: {
-          en: 'Yes, we provide support with visa-related business setup steps and assistance with corporate bank account preparation, including guidance on requirements and documentation.',
-          ru: 'Да, мы предоставляем поддержку в вопросах виз, связанных с открытием бизнеса, и помощь в подготовке корпоративного банковского счета, включая руководство по требованиям и документации.'
+          en: 'The G2M founder will contact you via WhatsApp. The first consultation on company formation is free.',
+          ru: 'С вами свяжется основатель G2M через WhatsApp. Первая консультация по открытию компании бесплатная.'
         }
       }
     ]
@@ -366,12 +302,12 @@ export const registrationContent = {
       ru: 'Готовы открыть компанию в Катаре?'
     },
     subtitle: {
-      en: 'Get in touch to discuss your company registration and receive guidance tailored to your business',
-      ru: 'Свяжитесь с нами, чтобы обсудить регистрацию вашей компании и получить руководство, адаптированное к вашему бизнесу'
+      en: 'Submit a request — we\'ll reach out and recommend the best registration option. First consultation on company formation is free.',
+      ru: 'Оставьте заявку — мы свяжемся и подберём оптимальный вариант регистрации. Первая консультация по открытию компании бесплатная.'
     },
     cta: {
-      en: 'Start Your Registration',
-      ru: 'Начать регистрацию'
+      en: 'Discuss Your Company Setup',
+      ru: 'Обсудить открытие компании'
     }
   }
 };

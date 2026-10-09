@@ -220,6 +220,20 @@ const RegistrationHomePage: React.FC<RegistrationHomePageProps> = ({ lang, setLa
           </div>
         </section>
 
+        {/* Trusted By */}
+        <section className="py-16 bg-slate-50 dark:bg-qatar-night-surface">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-2xl font-bold text-slate-900 dark:text-white mb-8">
+                {content.trustedBy.title[lang]}
+              </h2>
+              <p className="text-lg text-slate-600 dark:text-slate-400">
+                {content.trustedBy.companies}
+              </p>
+            </div>
+          </div>
+        </section>
+
         {/* FAQ */}
         <section id="faq" className="py-24 md:py-32 bg-white dark:bg-qatar-night">
             <div className="container mx-auto px-6">
@@ -258,7 +272,7 @@ const RegistrationHomePage: React.FC<RegistrationHomePageProps> = ({ lang, setLa
         {/* Shared sections */}
         <Suspense fallback={<div className="min-h-screen" />}>
           <ContactForm lang={lang} />
-          <Partners lang={lang} />
+          <Partners lang={lang} variant="registration" />
         </Suspense>
       </main>
 
