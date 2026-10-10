@@ -255,6 +255,26 @@ const ConsultingHomePage: React.FC<ConsultingHomePageProps> = ({ lang, setLang }
             </div>
           </section>
 
+        {/* Paid service context before the shared form */}
+        <section className="py-20 md:py-24 bg-slate-50 dark:bg-qatar-night-surface">
+          <div className="container mx-auto px-6">
+            <div className="max-w-4xl mx-auto text-center">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white mb-5">
+                {content.finalCTA.title[lang]}
+              </h2>
+              <p className="text-lg text-slate-600 dark:text-slate-300 leading-relaxed mb-8">
+                {content.finalCTA.subtitle[lang]}
+              </p>
+              <a
+                href="#contacts"
+                className="inline-flex items-center justify-center px-7 py-4 bg-qatar-maroon hover:bg-qatar-maroon-dark text-white font-bold text-base rounded-xl shadow-lg shadow-qatar-maroon/20 transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] min-h-[48px]"
+              >
+                {content.finalCTA.cta[lang]}
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* Shared sections */}
         <Suspense fallback={<div className="min-h-screen" />}>
           <ContactForm lang={lang} />

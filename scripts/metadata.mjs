@@ -36,12 +36,12 @@ export const SITES = {
   consulting: {
     domain: 'consulting.go2market.qa',
     title: {
-      en: 'Business Consulting in Qatar | G2M International',
-      ru: 'Бизнес-консультация в Катаре | G2M International'
+      en: 'Qatar Market Research for Businesses | G2M',
+      ru: 'Анализ рынка Катара для бизнеса | G2M'
     },
     description: {
-      en: 'G2M provides business consulting, market-entry guidance, and strategic support for companies and entrepreneurs operating in Qatar and GCC.',
-      ru: 'G2M предоставляет бизнес-консультации, поддержку выхода на рынок и стратегическую помощь для компаний и предпринимателей в Катаре и GCC.'
+      en: 'Paid Qatar market research and market-entry planning for entrepreneurs, startups, and companies. Scope and format are agreed before work begins.',
+      ru: 'Платный анализ рынка Катара и план выхода для предпринимателей, стартапов и компаний. Объём и формат согласовываются до начала работы.'
     },
     canonical: 'https://consulting.go2market.qa/',
     ogImage: 'https://consulting.go2market.qa/images/hero/qatar.jpg'

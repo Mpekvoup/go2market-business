@@ -1,367 +1,170 @@
 export const consultingContent = {
   hero: {
-    badge: {
-      en: 'Business Consultation',
-      ru: 'Бизнес-консультация'
-    },
-    headline: {
-      en: 'Grow Your Business in Qatar',
-      ru: 'Развивайте бизнес в Катаре'
-    },
+    badge: { en: 'Qatar Market Research', ru: 'Анализ рынка Катара' },
+    headline: { en: 'Assess the Qatar Market Before You Launch', ru: 'Оцените рынок Катара до запуска бизнеса' },
     subheadline: {
-      en: 'G2M provides practical business consulting, market-entry guidance, strategic support, and local market insight for companies and entrepreneurs operating in Qatar and GCC.',
-      ru: 'G2M предоставляет практические бизнес-консультации, поддержку выхода на рынок, стратегическую помощь и знание местного рынка для компаний и предпринимателей в Катаре и GCC.'
+      en: 'Receive written market research and a market-entry plan tailored to your business objectives. The format and scope are agreed before the project begins.',
+      ru: 'Получите письменный анализ рынка и план выхода, подготовленные под задачи вашего бизнеса. Формат и объём работы согласовываются до начала проекта.'
     },
-    primaryCTA: {
-      en: 'Book a Business Consultation',
-      ru: 'Заказать консультацию'
-    },
-    secondaryCTA: {
-      en: 'Explore Consulting Services',
-      ru: 'Узнать о консалтинге'
-    }
+    primaryCTA: { en: 'Discuss Your Market Research', ru: 'Обсудить анализ рынка' },
+    secondaryCTA: { en: 'See What the Service Covers', ru: 'Что входит в услугу' }
   },
 
   consultingAreas: {
-    title: {
-      en: 'What We Help You With',
-      ru: 'Чем мы помогаем'
-    },
+    title: { en: 'What We Can Analyse', ru: 'Что мы можем проанализировать' },
     subtitle: {
-      en: 'Expert guidance across key areas of business development in Qatar and GCC',
-      ru: 'Экспертная поддержка по ключевым направлениям развития бизнеса в Катаре и GCC'
+      en: 'The contents depend on your objectives and are agreed before work begins. Not every area is automatically included in every engagement.',
+      ru: 'Содержание зависит от вашей задачи и согласовывается до начала работы. Не все направления автоматически входят в каждый проект.'
     },
     areas: [
       {
         icon: 'target',
-        title: {
-          en: 'Market Entry Strategy',
-          ru: 'Стратегия выхода на рынок'
-        },
-        description: {
-          en: 'Understand market opportunities, assess entry options, and develop practical market-entry plans for Qatar and GCC.',
-          ru: 'Оцените возможности рынка, изучите варианты входа и разработайте практичный план выхода на рынок Катара и GCC.'
-        }
+        title: { en: 'Demand and Target Audience', ru: 'Спрос и целевая аудитория' },
+        description: { en: 'An assessment of potential demand and the customer groups the offer may address.', ru: 'Оценка предполагаемого спроса и определение групп клиентов, на которых может быть ориентировано предложение.' }
       },
       {
         icon: 'trending-up',
-        title: {
-          en: 'Business Strategy',
-          ru: 'Бизнес-стратегия'
-        },
-        description: {
-          en: 'Develop actionable business strategies aligned with your goals and local market dynamics.',
-          ru: 'Разработайте действенную бизнес-стратегию с учетом ваших целей и динамики местного рынка.'
-        }
+        title: { en: 'Competitors and Their Offers', ru: 'Конкуренты и их предложения' },
+        description: { en: 'An overview of the competitive landscape and offers already available in the market.', ru: 'Обзор конкурентной среды и предложений компаний, уже работающих на рынке.' }
       },
       {
         icon: 'rocket',
-        title: {
-          en: 'Growth Planning',
-          ru: 'Планирование роста'
-        },
-        description: {
-          en: 'Plan sustainable business growth, expansion strategies, and new market opportunities in GCC.',
-          ru: 'Спланируйте устойчивый рост бизнеса, стратегии расширения и новые возможности на рынке GCC.'
-        }
+        title: { en: 'Positioning', ru: 'Позиционирование' },
+        description: { en: 'Consideration of how the product or service could be presented in Qatar and differentiated from alternatives.', ru: 'Определение того, как представить продукт или услугу на рынке Катара и чем предложение может отличаться от альтернатив.' }
       },
       {
         icon: 'users',
-        title: {
-          en: 'Business Development',
-          ru: 'Развитие бизнеса'
-        },
-        description: {
-          en: 'Get support with partnership development, client acquisition, and business network building.',
-          ru: 'Получите поддержку в развитии партнерств, привлечении клиентов и построении бизнес-сети.'
-        }
+        title: { en: 'Sales and Customer Acquisition', ru: 'Продажи и привлечение клиентов' },
+        description: { en: 'A review of relevant channels for reaching potential customers.', ru: 'Рассмотрение подходящих каналов для выхода к потенциальным клиентам.' }
       },
       {
         icon: 'settings',
-        title: {
-          en: 'Operational Guidance',
-          ru: 'Операционная поддержка'
-        },
-        description: {
-          en: 'Receive practical guidance on business operations, process optimization, and local business practices.',
-          ru: 'Получите практические рекомендации по операционной деятельности, оптимизации процессов и местной бизнес-практике.'
-        }
+        title: { en: 'Obstacles and Risks', ru: 'Препятствия и риски' },
+        description: { en: 'Identification of factors that should be considered before entering the market.', ru: 'Выявление факторов, которые важно учитывать до выхода на рынок.' }
       },
       {
         icon: 'compass',
-        title: {
-          en: 'Local Market Orientation',
-          ru: 'Знание местного рынка'
-        },
-        description: {
-          en: 'Navigate Qatar business environment with insights into local regulations, culture, and market dynamics.',
-          ru: 'Ориентируйтесь в бизнес-среде Катара с пониманием местных регуляций, культуры и динамики рынка.'
-        }
+        title: { en: 'Sequence of Actions', ru: 'Последовательность действий' },
+        description: { en: 'A structured plan of the next steps for launching in Qatar.', ru: 'План следующих шагов для запуска бизнеса в Катаре.' }
       }
     ]
   },
 
   whoWeHelp: {
-    title: {
-      en: 'Who We Work With',
-      ru: 'С кем мы работаем'
-    },
+    title: { en: 'Who It Is For', ru: 'Для кого' },
     subtitle: {
-      en: 'G2M supports diverse businesses at different stages of Qatar market engagement',
-      ru: 'G2M поддерживает различные компании на разных этапах работы с рынком Катара'
+      en: 'Typical industries represented among G2M clients include tourism, IT and AI, fintech, chemicals and raw materials, and education.',
+      ru: 'Среди типичных отраслей клиентов G2M — туризм, IT и AI, финтех, химия и сырьё, образование.'
     },
     audience: [
       {
-        title: {
-          en: 'Entrepreneurs',
-          ru: 'Предприниматели'
-        },
-        description: {
-          en: 'Founders and entrepreneurs planning to start or grow businesses in Qatar and GCC markets.',
-          ru: 'Основатели и предприниматели, планирующие начать или развить бизнес на рынках Катара и GCC.'
-        }
+        title: { en: 'Entrepreneurs', ru: 'Предприниматели' },
+        description: { en: 'For assessing an industry or business idea before launching in Qatar.', ru: 'Для оценки отрасли или бизнес-идеи перед запуском в Катаре.' }
       },
       {
-        title: {
-          en: 'SMEs',
-          ru: 'Малый и средний бизнес'
-        },
-        description: {
-          en: 'Small and medium enterprises seeking business growth, operational improvements, or market expansion.',
-          ru: 'Малые и средние предприятия, стремящиеся к росту бизнеса, операционным улучшениям или расширению рынка.'
-        }
+        title: { en: 'Startups', ru: 'Стартапы' },
+        description: { en: 'For assessing a market opportunity and planning market entry.', ru: 'Для оценки рыночной возможности и планирования выхода на рынок.' }
       },
       {
-        title: {
-          en: 'International Companies',
-          ru: 'Международные компании'
-        },
-        description: {
-          en: 'Companies entering Qatar market or expanding their GCC presence with local market guidance.',
-          ru: 'Компании, выходящие на рынок Катара или расширяющие присутствие в GCC с местной экспертизой.'
-        }
+        title: { en: 'Small and Medium-Sized Businesses', ru: 'Малый и средний бизнес' },
+        description: { en: 'For businesses considering Qatar as a new market.', ru: 'Для компаний, рассматривающих Катар как новый рынок.' }
       },
       {
-        title: {
-          en: 'Investors',
-          ru: 'Инвесторы'
-        },
-        description: {
-          en: 'Investors evaluating Qatar business opportunities and seeking market intelligence and strategic insights.',
-          ru: 'Инвесторы, оценивающие бизнес-возможности в Катаре и нуждающиеся в рыночной аналитике и стратегических идеях.'
-        }
+        title: { en: 'International Companies and Investors', ru: 'Международные компании и инвесторы' },
+        description: { en: 'For exploring an industry or a Qatar-based business opportunity.', ru: 'Для изучения отрасли или возможности запуска бизнеса в Катаре.' }
       }
     ]
   },
 
   process: {
-    title: {
-      en: 'How Consultation Works',
-      ru: 'Как проходит консультация'
-    },
-    subtitle: {
-      en: 'A structured approach to understanding your business needs and delivering actionable guidance',
-      ru: 'Структурированный подход к пониманию ваших бизнес-потребностей и предоставлению практических рекомендаций'
-    },
+    title: { en: 'How It Works', ru: 'Как проходит работа' },
+    subtitle: { en: 'From your enquiry to the final review', ru: 'От заявки до итогового разбора' },
     steps: [
       {
         number: '01',
-        title: {
-          en: 'Initial Consultation',
-          ru: 'Первичная консультация'
-        },
-        description: {
-          en: 'We discuss your business objectives, current situation, and specific challenges or opportunities you are facing.',
-          ru: 'Обсуждаем ваши бизнес-цели, текущую ситуацию и конкретные вызовы или возможности, с которыми вы сталкиваетесь.'
-        }
+        title: { en: 'Discuss the Objectives', ru: 'Обсуждаем задачу' },
+        description: { en: 'After you submit an enquiry, the founder of G2M contacts you on WhatsApp.', ru: 'После заявки основатель G2M связывается с вами через WhatsApp.' }
       },
       {
         number: '02',
-        title: {
-          en: 'Business Situation Review',
-          ru: 'Анализ ситуации'
-        },
-        description: {
-          en: 'We analyze your business context, market position, and relevant local factors affecting your Qatar operations.',
-          ru: 'Анализируем контекст вашего бизнеса, рыночную позицию и релевантные местные факторы, влияющие на операции в Катаре.'
-        }
+        title: { en: 'Agree on the Scope', ru: 'Согласовываем объём' },
+        description: { en: 'We define the objectives, contents, and format of the result before work begins.', ru: 'Определяем цели, содержание и формат результата до начала работы.' }
       },
       {
         number: '03',
-        title: {
-          en: 'Strategic Recommendations',
-          ru: 'Стратегические рекомендации'
-        },
-        description: {
-          en: 'Based on our analysis, we provide practical strategic recommendations tailored to your business needs.',
-          ru: 'На основе анализа предоставляем практичные стратегические рекомендации, адаптированные к вашим бизнес-потребностям.'
-        }
+        title: { en: 'Prepare the Research and Plan', ru: 'Готовим анализ и план' },
+        description: { en: 'We prepare materials covering the areas included in the agreed scope.', ru: 'Подготавливаем материалы по направлениям, включённым в согласованную задачу.' }
       },
       {
         number: '04',
-        title: {
-          en: 'Action Plan',
-          ru: 'План действий'
-        },
-        description: {
-          en: 'We help you develop an actionable plan with clear next steps for implementation.',
-          ru: 'Помогаем разработать практичный план с четкими следующими шагами для реализации.'
-        }
-      },
-      {
-        number: '05',
-        title: {
-          en: 'Ongoing Support',
-          ru: 'Постоянная поддержка'
-        },
-        description: {
-          en: 'As your business evolves, we provide continued consultation and guidance when you need it.',
-          ru: 'По мере развития вашего бизнеса предоставляем постоянную консультационную поддержку, когда она вам нужна.'
-        }
+        title: { en: 'Review the Result', ru: 'Разбираем результат' },
+        description: { en: 'We hold a final consultation to review the findings, answer questions, and discuss possible next steps.', ru: 'Проводим итоговую консультацию, отвечаем на вопросы и обсуждаем следующие действия.' }
       }
     ]
   },
 
   whyG2M: {
-    title: {
-      en: 'Why Work with G2M',
-      ru: 'Почему G2M'
-    },
+    title: { en: 'What You Receive', ru: 'Что вы получите' },
     reasons: [
       {
-        title: {
-          en: 'Local Market Understanding',
-          ru: 'Знание местного рынка'
-        },
-        description: {
-          en: 'Deep understanding of Qatar and GCC business environment, regulations, and market dynamics.',
-          ru: 'Глубокое понимание бизнес-среды Катара и GCC, регуляций и динамики рынка.'
-        }
+        title: { en: 'Written Market Research', ru: 'Письменный анализ рынка' },
+        description: { en: 'Qatar market research in the format agreed before work begins.', ru: 'Анализ рынка Катара в формате, согласованном до начала работы.' }
       },
       {
-        title: {
-          en: 'Practical Guidance',
-          ru: 'Практичная поддержка'
-        },
-        description: {
-          en: 'Actionable recommendations focused on real business outcomes, not theoretical frameworks.',
-          ru: 'Практичные рекомендации, сфокусированные на реальных бизнес-результатах, а не теоретических схемах.'
-        }
+        title: { en: 'A Tailored Market-Entry Plan', ru: 'План выхода под задачу' },
+        description: { en: 'A market-entry plan based on the agreed objectives of your business.', ru: 'План выхода на рынок с учётом согласованных задач вашего бизнеса.' }
       },
       {
-        title: {
-          en: 'Personalized Approach',
-          ru: 'Персонализированный подход'
-        },
-        description: {
-          en: 'Tailored consultation based on your specific business context, industry, and objectives.',
-          ru: 'Индивидуальная консультация на основе вашего конкретного бизнес-контекста, отрасли и целей.'
-        }
+        title: { en: 'Defined Project Boundaries', ru: 'Понятные границы проекта' },
+        description: { en: 'The contents, format, and scope are agreed in advance.', ru: 'Содержание, формат и объём результата согласовываются заранее.' }
       },
       {
-        title: {
-          en: 'Clear Communication',
-          ru: 'Четкая коммуникация'
-        },
-        description: {
-          en: 'Transparent, direct communication in English and Russian without unnecessary complexity.',
-          ru: 'Прозрачная, прямая коммуникация на английском и русском языках без излишней сложности.'
-        }
+        title: { en: 'Structured Next Steps', ru: 'Последовательность действий' },
+        description: { en: 'The materials include a structured sequence of actions for entering Qatar.', ru: 'Материалы включают последовательность действий для выхода на рынок Катара.' }
       },
       {
-        title: {
-          en: 'End-to-End Business Support',
-          ru: 'Комплексная поддержка'
-        },
-        description: {
-          en: 'Beyond consultation, we can support you with company setup, business development, and operational needs.',
-          ru: 'Помимо консультаций, мы можем помочь вам с регистрацией компании, развитием бизнеса и операционными потребностями.'
-        }
+        title: { en: 'Final Consultation', ru: 'Итоговая консультация' },
+        description: { en: 'We review the findings, answer questions, and discuss possible next steps. Implementation and ongoing support are agreed separately.', ru: 'Разбираем выводы, отвечаем на вопросы и обсуждаем следующие шаги. Реализация и дальнейшее сопровождение согласовываются отдельно.' }
       }
     ]
   },
 
   faq: {
-    title: {
-      en: 'Frequently Asked Questions',
-      ru: 'Часто задаваемые вопросы'
-    },
+    title: { en: 'Frequently Asked Questions', ru: 'Часто задаваемые вопросы' },
     items: [
       {
-        question: {
-          en: 'What can G2M advise on?',
-          ru: 'По каким вопросам G2M может консультировать?'
-        },
-        answer: {
-          en: 'We provide consultation on market entry, business strategy, growth planning, business development, operational guidance, and navigating the Qatar business environment. Our focus is on practical guidance relevant to your specific business situation.',
-          ru: 'Мы консультируем по выходу на рынок, бизнес-стратегии, планированию роста, развитию бизнеса, операционной поддержке и навигации в бизнес-среде Катара. Фокусируемся на практических рекомендациях, релевантных вашей конкретной бизнес-ситуации.'
-        }
+        question: { en: 'Is this a paid consultation?', ru: 'Это платная консультация?' },
+        answer: { en: 'Yes. Qatar market research and market-entry planning are paid services. The fee is determined after the objectives and scope of work have been agreed.', ru: 'Да. Анализ рынка Катара и подготовка плана выхода — платная услуга. Стоимость определяется после согласования задачи и объёма работы.' }
       },
       {
-        question: {
-          en: 'Who is business consultation for?',
-          ru: 'Для кого бизнес-консультация?'
-        },
-        answer: {
-          en: 'Our consultation services are for entrepreneurs, SMEs, international companies, and investors who are entering, operating, or growing businesses in Qatar and GCC markets.',
-          ru: 'Наши консультационные услуги предназначены для предпринимателей, малого и среднего бизнеса, международных компаний и инвесторов, которые выходят на рынок, работают или развивают бизнес в Катаре и на рынках GCC.'
-        }
+        question: { en: 'Are all the listed areas included?', ru: 'Все перечисленные направления входят в услугу?' },
+        answer: { en: 'Not necessarily. The contents depend on the agreed objectives and scope of the project.', ru: 'Не обязательно. Содержание зависит от согласованной задачи и объёма проекта.' }
       },
       {
-        question: {
-          en: 'Can G2M support market entry into Qatar?',
-          ru: 'Может ли G2M поддержать выход на рынок Катара?'
-        },
-        answer: {
-          en: 'Yes, we provide market entry consultation including market assessment, entry strategy development, and practical guidance on establishing and operating in Qatar. We can also support with company registration and business setup.',
-          ru: 'Да, мы предоставляем консультации по выходу на рынок, включая оценку рынка, разработку стратегии входа и практическую поддержку по созданию и работе в Катаре. Также можем помочь с регистрацией компании и открытием бизнеса.'
-        }
+        question: { en: 'Is company registration included?', ru: 'Входит ли регистрация компании?' },
+        answer: { en: 'No. Company registration and the free initial company-formation consultation are part of a separate offer.', ru: 'Нет. Регистрация компании и бесплатная первая консультация по её открытию относятся к отдельному предложению.' }
       },
       {
-        question: {
-          en: 'Can consultation continue after initial setup?',
-          ru: 'Возможна ли консультация после первоначальной настройки?'
-        },
-        answer: {
-          en: 'Yes, we provide ongoing consultation as your business evolves. Many clients work with us continuously for strategic guidance, growth planning, and operational support.',
-          ru: 'Да, мы предоставляем постоянную консультационную поддержку по мере развития вашего бизнеса. Многие клиенты работают с нами постоянно для стратегической поддержки, планирования роста и операционной помощи.'
-        }
+        question: { en: 'Are partner search, lead generation, and fundraising included?', ru: 'Входят ли поиск партнёров, лидогенерация и привлечение финансирования?' },
+        answer: { en: 'No. They are not automatically included and must be discussed separately if required.', ru: 'Нет. Они не входят автоматически и при необходимости обсуждаются отдельно.' }
       },
       {
-        question: {
-          en: 'How does the consultation process work?',
-          ru: 'Как проходит процесс консультации?'
-        },
-        answer: {
-          en: 'We start with an initial consultation to understand your business needs, then review your situation, provide strategic recommendations, and help develop an actionable plan. The process is tailored to your specific requirements.',
-          ru: 'Начинаем с первичной консультации для понимания ваших потребностей, затем анализируем ситуацию, предоставляем стратегические рекомендации и помогаем разработать план действий. Процесс адаптируется под ваши конкретные требования.'
-        }
+        question: { en: 'What happens after the research is prepared?', ru: 'Что происходит после подготовки анализа?' },
+        answer: { en: 'We hold a final consultation to review the findings and discuss possible next steps. Strategy implementation and ongoing support are agreed separately.', ru: 'Проводим итоговую консультацию, разбираем выводы и обсуждаем возможные следующие действия. Реализация стратегии и дальнейшее сопровождение согласовываются отдельно.' }
       },
       {
-        question: {
-          en: 'Do you provide consultation in Russian?',
-          ru: 'Вы консультируете на русском языке?'
-        },
-        answer: {
-          en: 'Yes, we provide full consultation services in both English and Russian.',
-          ru: 'Да, мы предоставляем полный спектр консультационных услуг на английском и русском языках.'
-        }
+        question: { en: 'Does the service guarantee a commercial result?', ru: 'Гарантирует ли услуга коммерческий результат?' },
+        answer: { en: 'No. The research does not guarantee sales, financial returns, or investment.', ru: 'Нет. Анализ не гарантирует продажи, доходность или получение инвестиций.' }
       }
     ]
   },
 
   finalCTA: {
-    title: {
-      en: 'Discuss Your Business Plans with G2M',
-      ru: 'Обсудите ваши бизнес-планы с G2M'
-    },
+    title: { en: 'Discuss Your Qatar Market Research', ru: 'Обсудите анализ рынка Катара' },
     subtitle: {
-      en: 'Book a consultation to explore how we can support your Qatar business objectives',
-      ru: 'Запишитесь на консультацию, чтобы узнать, как мы можем поддержать ваши бизнес-цели в Катаре'
+      en: 'This is a paid service. Submit an enquiry, and the founder of G2M will contact you on WhatsApp to clarify your objectives and discuss the scope, format, and commercial terms.',
+      ru: 'Это платная услуга. Оставьте заявку, и основатель G2M свяжется с вами через WhatsApp, чтобы уточнить задачу и обсудить объём, формат и условия работы.'
     },
-    cta: {
-      en: 'Book a Consultation',
-      ru: 'Заказать консультацию'
-    }
+    cta: { en: 'Discuss Your Market Research', ru: 'Обсудить анализ рынка' }
   }
 };
